@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <defs>
+    <linearGradient id="gc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B5A"/>
+      <stop offset="100%" stop-color="#FF8C6B"/>
+    </linearGradient>
+  </defs>
+  <text x="0" y="54" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="48" font-weight="800" letter-spacing="-2">
+    <tspan fill="#1E3A5F">Edu</tspan><tspan fill="url(#gc)">Pay</tspan>
+  </text>
+  <path d="M267,30 L279,42 L267,54" stroke="url(#gc)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6"/>
+</svg>
