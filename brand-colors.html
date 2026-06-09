@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>EduPay Brand Colors</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #0A0F1C; color: #fff; padding: 40px; min-height: 100vh; }
+  h1 { text-align: center; font-size: 28px; margin-bottom: 8px; }
+  .sub { text-align: center; color: #64748B; margin-bottom: 48px; font-size: 14px; letter-spacing: 2px; }
+  .section { margin-bottom: 48px; }
+  .section h2 { color: #94A3B8; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+  .grid { display: flex; gap: 16px; flex-wrap: wrap; }
+  .swatch {
+    width: 180px; height: 140px; border-radius: 16px; padding: 16px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    cursor: pointer; transition: transform 0.2s; position: relative;
+    border: 2px solid rgba(255,255,255,0.06);
+  }
+  .swatch:hover { transform: scale(1.05); }
+  .swatch .name { font-weight: 700; font-size: 14px; }
+  .swatch .hex { font-size: 13px; opacity: 0.8; font-family: monospace; margin-top: 2px; }
+  .swatch .use { font-size: 11px; opacity: 0.6; margin-top: 4px; }
+
+  .combo { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; }
+  .combo-card {
+    width: 280px; padding: 32px; border-radius: 16px; text-align: center;
+    border: 2px solid rgba(255,255,255,0.06);
+  }
+  .combo-card h3 { font-size: 20px; margin-bottom: 4px; }
+  .combo-card p { font-size: 13px; opacity: 0.7; }
+  .combo-card .btn {
+    display: inline-block; margin-top: 16px; padding: 10px 28px;
+    border-radius: 8px; font-weight: 600; font-size: 14px; border: none;
+  }
+
+  .alt-section { margin-top: 64px; padding-top: 48px; border-top: 1px solid #1E293B; }
+  .alt-grid { display: flex; gap: 16px; flex-wrap: wrap; }
+  .alt-palette {
+    flex: 1; min-width: 300px; padding: 32px; border-radius: 16px;
+    border: 2px solid rgba(255,255,255,0.08); cursor: pointer; transition: all 0.2s;
+  }
+  .alt-palette:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
+  .alt-palette h3 { font-size: 16px; margin-bottom: 16px; }
+  .alt-palette .colors { display: flex; gap: 8px; margin-bottom: 16px; }
+  .alt-palette .colors div { width: 48px; height: 48px; border-radius: 10px; }
+  .alt-palette p { font-size: 12px; color: #94A3B8; }
+  .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-bottom: 12px; }
+</style></head><body>
+
+<h1>🎨 EduPay Brand Colors</h1>
+<p class="sub">CURRENT PALETTE</p>
+
+<div class="section">
+  <h2>Primary Accent</h2>
+  <div class="grid">
+    <div class="swatch" style="background: #14B8A6;">
+      <div class="name" style="color: #0A0F1C;">Teal</div>
+      <div class="hex" style="color: #0A0F1C;">#14B8A6</div>
+      <div class="use" style="color: #0A0F1C;">כפתורים, לוגו, CTA</div>
+    </div>
+    <div class="swatch" style="background: #0D9488;">
+      <div class="name" style="color: #fff;">Teal Dark</div>
+      <div class="hex">#0D9488</div>
+      <div class="use">Hover states</div>
+    </div>
+    <div class="swatch" style="background: #0EA5E9;">
+      <div class="name" style="color: #0A0F1C;">Sky Blue</div>
+      <div class="hex" style="color: #0A0F1C;">#0EA5E9</div>
+      <div class="use" style="color: #0A0F1C;">גרדיאנט, אקסנט משני</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Backgrounds</h2>
+  <div class="grid">
+    <div class="swatch" style="background: #0A0F1C; border-color: #1E293B;">
+      <div class="name">Navy Deep</div>
+      <div class="hex">#0A0F1C</div>
+      <div class="use">רקע ראשי</div>
+    </div>
+    <div class="swatch" style="background: #0F1629; border-color: #1E293B;">
+      <div class="name">Navy Mid</div>
+      <div class="hex">#0F1629</div>
+      <div class="use">סקשנים זוגיים</div>
+    </div>
+    <div class="swatch" style="background: #111827; border-color: #1E293B;">
+      <div class="name">Slate</div>
+      <div class="hex">#111827</div>
+      <div class="use">כרטיסים, שדות</div>
+    </div>
+    <div class="swatch" style="background: #050810; border-color: #1E293B;">
+      <div class="name">Abyss</div>
+      <div class="hex">#050810</div>
+      <div class="use">Footer</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Text</h2>
+  <div class="grid">
+    <div class="swatch" style="background: #FFFFFF;">
+      <div class="name" style="color: #0A0F1C;">White</div>
+      <div class="hex" style="color: #0A0F1C;">#FFFFFF</div>
+      <div class="use" style="color: #0A0F1C;">כותרות</div>
+    </div>
+    <div class="swatch" style="background: #94A3B8;">
+      <div class="name" style="color: #0A0F1C;">Silver</div>
+      <div class="hex" style="color: #0A0F1C;">#94A3B8</div>
+      <div class="use" style="color: #0A0F1C;">טקסט גוף</div>
+    </div>
+    <div class="swatch" style="background: #64748B;">
+      <div class="name" style="color: #fff;">Muted</div>
+      <div class="hex">#64748B</div>
+      <div class="use">Footer, תוויות</div>
+    </div>
+    <div class="swatch" style="background: #1E293B;">
+      <div class="name" style="color: #94A3B8;">Border</div>
+      <div class="hex" style="color: #94A3B8;">#1E293B</div>
+      <div class="use" style="color: #64748B;">גבולות, קווים</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Preview — Button + Card</h2>
+  <div class="combo">
+    <div class="combo-card" style="background: #0F1629;">
+      <h3>גבייה דיגיטלית</h3>
+      <p>תשלומים אונליין לצהרונים ומסגרות חינוך</p>
+      <div class="btn" style="background: #14B8A6; color: #0A0F1C;">התחל עכשיו</div>
+    </div>
+    <div class="combo-card" style="background: #0F1629;">
+      <h3>גבייה דיגיטלית</h3>
+      <p>תשלומים אונליין לצהרונים ומסגרות חינוך</p>
+      <div class="btn" style="background: linear-gradient(135deg, #14B8A6, #0EA5E9); color: #0A0F1C;">התחל עכשיו</div>
+    </div>
+  </div>
+</div>
+
+<!-- ALTERNATIVES -->
+<div class="alt-section">
+  <h2 style="color: #94A3B8; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 24px;">
+    🔄 Alternative Palettes — Options
+  </h2>
+
+  <div class="alt-grid">
+    <div class="alt-palette" style="background: #0A0F1C;">
+      <span class="tag" style="background: #14B8A6; color: #0A0F1C;">CURRENT</span>
+      <h3>Teal Premium</h3>
+      <div class="colors">
+        <div style="background: #14B8A6; border-radius: 10px;"></div>
+        <div style="background: #0EA5E9; border-radius: 10px;"></div>
+        <div style="background: #0A0F1C; border: 1px solid #1E293B; border-radius: 10px;"></div>
+        <div style="background: #FFFFFF; border-radius: 10px;"></div>
+      </div>
+      <p>טק מודרני, פינטק, אמינות</p>
+    </div>
+
+    <div class="alt-palette" style="background: #0A0F1C;">
+      <span class="tag" style="background: #8B5CF6; color: #fff;">OPTION B</span>
+      <h3>Purple Fintech</h3>
+      <div class="colors">
+        <div style="background: #8B5CF6; border-radius: 10px;"></div>
+        <div style="background: #A78BFA; border-radius: 10px;"></div>
+        <div style="background: #0A0F1C; border: 1px solid #1E293B; border-radius: 10px;"></div>
+        <div style="background: #FFFFFF; border-radius: 10px;"></div>
+      </div>
+      <p>Stripe-style, פרימיום, יוקרתי</p>
+    </div>
+
+    <div class="alt-palette" style="background: #0A0F1C;">
+      <span class="tag" style="background: #F59E0B; color: #0A0F1C;">OPTION C</span>
+      <h3>Gold Education</h3>
+      <div class="colors">
+        <div style="background: #F59E0B; border-radius: 10px;"></div>
+        <div style="background: #14B8A6; border-radius: 10px;"></div>
+        <div style="background: #0A0F1C; border: 1px solid #1E293B; border-radius: 10px;"></div>
+        <div style="background: #FFFFFF; border-radius: 10px;"></div>
+      </div>
+      <p>חינוך + זהב, חם ומזמין</p>
+    </div>
+
+    <div class="alt-palette" style="background: #FFFFFF; border-color: #E2E8F0;">
+      <span class="tag" style="background: #0EA5E9; color: #fff;">OPTION D</span>
+      <h3 style="color: #0F172A;">Light Mode</h3>
+      <div class="colors">
+        <div style="background: #0EA5E9; border-radius: 10px;"></div>
+        <div style="background: #14B8A6; border-radius: 10px;"></div>
+        <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px;"></div>
+        <div style="background: #0F172A; border-radius: 10px;"></div>
+      </div>
+      <p style="color: #64748B;">נקי, בהיר, ידידותי — כמו Monday.com</p>
+    </div>
+  </div>
+</div>
+
+</body></html>

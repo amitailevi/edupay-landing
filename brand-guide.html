@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html dir="rtl"><head><meta charset="UTF-8"><title>EduPay Brand Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: #0B1120; color: #fff; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 60px 40px; }
+  h1 { font-size: 36px; font-weight: 800; text-align: center; margin-bottom: 4px; }
+  .tagline { text-align: center; color: #64748B; font-size: 14px; letter-spacing: 3px; margin-bottom: 60px; }
+
+  .section { margin-bottom: 64px; }
+  .section-title { font-size: 12px; letter-spacing: 4px; color: #FF6B5A; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; }
+
+  /* LOGO SHOWCASE */
+  .logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .logo-box { border-radius: 16px; padding: 48px; display: flex; align-items: center; justify-content: center; }
+  .logo-box img { height: 48px; }
+  .logo-box.icon img { height: 64px; }
+  .logo-box .label { position: absolute; bottom: 12px; right: 12px; font-size: 10px; color: #64748B; letter-spacing: 1px; }
+
+  /* COLORS */
+  .color-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .color-chip {
+    flex: 1; min-width: 140px; height: 120px; border-radius: 14px; padding: 16px;
+    display: flex; flex-direction: column; justify-content: flex-end; position: relative;
+    border: 2px solid rgba(255,255,255,0.05);
+  }
+  .color-chip .name { font-weight: 700; font-size: 13px; }
+  .color-chip .hex { font-family: monospace; font-size: 12px; opacity: 0.7; margin-top: 2px; }
+  .color-chip .role { font-size: 10px; opacity: 0.5; margin-top: 4px; }
+
+  /* TYPOGRAPHY */
+  .type-sample { background: #111827; border-radius: 16px; padding: 32px; margin-bottom: 16px; }
+  .type-sample h3 { margin-bottom: 16px; color: #64748B; font-size: 11px; letter-spacing: 2px; }
+  .type-row { margin-bottom: 20px; }
+  .type-row .size { font-size: 11px; color: #FF6B5A; font-family: monospace; margin-bottom: 4px; }
+
+  /* USAGE */
+  .usage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .usage-card { background: #111827; border-radius: 16px; overflow: hidden; }
+  .usage-card .preview { padding: 32px; text-align: center; }
+  .usage-card .meta { padding: 16px 20px; border-top: 1px solid #1E293B; }
+  .usage-card .meta h4 { font-size: 13px; margin-bottom: 2px; }
+  .usage-card .meta p { font-size: 11px; color: #64748B; }
+
+  .btn-preview { display: inline-block; padding: 12px 32px; border-radius: 10px; font-weight: 700; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; border: none; cursor: pointer; }
+
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .do, .dont { border-radius: 14px; padding: 24px; }
+  .do { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); }
+  .dont { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); }
+  .do h4 { color: #22C55E; font-size: 13px; margin-bottom: 12px; }
+  .dont h4 { color: #EF4444; font-size: 13px; margin-bottom: 12px; }
+  .do li, .dont li { font-size: 13px; color: #94A3B8; margin-bottom: 6px; list-style: none; }
+  .do li::before { content: "✓ "; color: #22C55E; font-weight: 700; }
+  .dont li::before { content: "✗ "; color: #EF4444; font-weight: 700; }
+</style></head><body>
+
+<div class="page">
+  <h1><span style="color:#fff">Edu</span><span style="color:#FF6B5A">Pay</span></h1>
+  <p class="tagline">BRAND GUIDE 2026</p>
+
+  <!-- LOGO -->
+  <div class="section">
+    <div class="section-title">לוגו</div>
+    <div class="logo-grid">
+      <div class="logo-box" style="background: #0B1120; border: 1px solid #1E293B;">
+        <img src="logo.svg">
+      </div>
+      <div class="logo-box" style="background: #F8FAFC;">
+        <img src="logo-dark.svg">
+      </div>
+      <div class="logo-box icon" style="background: #0B1120; border: 1px solid #1E293B;">
+        <img src="logo-icon.svg">
+      </div>
+      <div class="logo-box icon" style="background: #F8FAFC;">
+        <img src="logo-icon.svg">
+      </div>
+    </div>
+  </div>
+
+  <!-- COLORS -->
+  <div class="section">
+    <div class="section-title">צבעים</div>
+    <div class="color-row">
+      <div class="color-chip" style="background: #FF6B5A;">
+        <div class="name" style="color:#fff">Coral</div>
+        <div class="hex" style="color:#fff">#FF6B5A</div>
+        <div class="role" style="color:#fff">PRIMARY — כפתורים, CTA, לוגו</div>
+      </div>
+      <div class="color-chip" style="background: #1E3A5F;">
+        <div class="name">Navy</div>
+        <div class="hex">#1E3A5F</div>
+        <div class="role">SECONDARY — אמינות, רקע אייקון</div>
+      </div>
+      <div class="color-chip" style="background: #00C9A7;">
+        <div class="name" style="color:#0B1120">Mint</div>
+        <div class="hex" style="color:#0B1120">#00C9A7</div>
+        <div class="role" style="color:#0B1120">ACCENT — רעננות, לינקים, הדגשות</div>
+      </div>
+    </div>
+    <div class="color-row">
+      <div class="color-chip" style="background: #0B1120; border-color: #1E293B;">
+        <div class="name">Deep</div>
+        <div class="hex">#0B1120</div>
+        <div class="role">רקע ראשי</div>
+      </div>
+      <div class="color-chip" style="background: #111827; border-color: #1E293B;">
+        <div class="name">Slate</div>
+        <div class="hex">#111827</div>
+        <div class="role">כרטיסים, שדות</div>
+      </div>
+      <div class="color-chip" style="background: #2D3436;">
+        <div class="name">Charcoal</div>
+        <div class="hex">#2D3436</div>
+        <div class="role">טקסט על רקע בהיר</div>
+      </div>
+      <div class="color-chip" style="background: #22C55E;">
+        <div class="name" style="color:#0B1120">Success</div>
+        <div class="hex" style="color:#0B1120">#22C55E</div>
+        <div class="role" style="color:#0B1120">אישורי תשלום בלבד</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="section">
+    <div class="section-title">טיפוגרפיה — Plus Jakarta Sans</div>
+    <div class="type-sample">
+      <div class="type-row">
+        <div class="size">48px / 800 — Hero</div>
+        <div style="font-size: 48px; font-weight: 800; letter-spacing: -1px;">גבייה דיגיטלית חכמה</div>
+      </div>
+      <div class="type-row">
+        <div class="size">32px / 700 — H1</div>
+        <div style="font-size: 32px; font-weight: 700;">רישום, תשלום וניהול</div>
+      </div>
+      <div class="type-row">
+        <div class="size">20px / 600 — H2</div>
+        <div style="font-size: 20px; font-weight: 600;">איך זה עובד?</div>
+      </div>
+      <div class="type-row">
+        <div class="size">16px / 400 — Body</div>
+        <div style="font-size: 16px; font-weight: 400; color: #94A3B8; line-height: 1.6;">EduPay מאפשרת לרשויות מקומיות, צהרונים וחוגים לנהל רישום ותשלומים דיגיטליים במקום אחד. מהיר, פשוט, בטוח.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="section">
+    <div class="section-title">כפתורים</div>
+    <div class="usage-grid">
+      <div class="usage-card">
+        <div class="preview" style="background: #0B1120;">
+          <div class="btn-preview" style="background: #FF6B5A; color: #fff;">התחל עכשיו →</div>
+        </div>
+        <div class="meta"><h4>Primary CTA</h4><p>Coral, white text, 10px radius</p></div>
+      </div>
+      <div class="usage-card">
+        <div class="preview" style="background: #0B1120;">
+          <div class="btn-preview" style="background: transparent; color: #FF6B5A; border: 2px solid #FF6B5A;">למד עוד</div>
+        </div>
+        <div class="meta"><h4>Secondary</h4><p>Outline coral</p></div>
+      </div>
+      <div class="usage-card">
+        <div class="preview" style="background: #0B1120;">
+          <div class="btn-preview" style="background: #22C55E; color: #fff;">✓ התשלום אושר</div>
+        </div>
+        <div class="meta"><h4>Success</h4><p>Green — רק לאישורי תשלום</p></div>
+      </div>
+      <div class="usage-card">
+        <div class="preview" style="background: #F8FAFC;">
+          <div class="btn-preview" style="background: #FF6B5A; color: #fff;">התחל עכשיו →</div>
+        </div>
+        <div class="meta"><h4>On Light BG</h4><p>Same coral — works on both</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DO / DON'T -->
+  <div class="section">
+    <div class="section-title">כללים</div>
+    <div class="do-dont">
+      <div class="do">
+        <h4>✓ כן</h4>
+        <ul>
+          <li>Coral כצבע ראשי תמיד</li>
+          <li>Navy לרקעים כהים ואייקונים</li>
+          <li>Mint לאקסנטים והדגשות</li>
+          <li>ירוק רק ל-success states</li>
+          <li>Plus Jakarta Sans לכל הטקסט</li>
+          <li>דו-שפתי: EN ראשי, HE משני</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h4>✗ לא</h4>
+        <ul>
+          <li>כחול או סגול כצבע ראשי</li>
+          <li>פונטים ילדותיים / דקורטיביים</li>
+          <li>Helvetica Neue / סגנון תאגידי</li>
+          <li>לוגו על רקע דומה לקורל</li>
+          <li>ערבוב עברית ואנגלית במילה אחת</li>
+          <li>אייקון בלבד בלי שם</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body></html>

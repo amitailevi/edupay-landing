@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html dir="rtl"><head><meta charset="UTF-8"><title>EduPay Brand Research</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #0A0F1C; color: #fff; padding: 0; }
+
+  .hero { padding: 60px 40px 40px; text-align: center; }
+  .hero h1 { font-size: 32px; margin-bottom: 8px; }
+  .hero .sub { color: #64748B; font-size: 14px; letter-spacing: 2px; }
+  .hero .stats { display: flex; gap: 32px; justify-content: center; margin-top: 24px; }
+  .hero .stat { text-align: center; }
+  .hero .stat .num { font-size: 28px; font-weight: 800; color: #FF6B5A; }
+  .hero .stat .label { font-size: 11px; color: #64748B; letter-spacing: 1px; margin-top: 2px; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 40px 60px; }
+
+  .section { margin-bottom: 56px; }
+  .section h2 { font-size: 20px; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .section h2 .icon { font-size: 24px; }
+  .section .verdict { color: #94A3B8; font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
+
+  .finding { background: #0F1629; border-radius: 16px; padding: 24px; margin-bottom: 16px; border-right: 4px solid #FF6B5A; }
+  .finding.green { border-right-color: #22C55E; }
+  .finding.blue { border-right-color: #0EA5E9; }
+  .finding h3 { font-size: 15px; margin-bottom: 8px; color: #fff; }
+  .finding p { font-size: 13px; color: #94A3B8; line-height: 1.7; }
+  .finding .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-bottom: 8px; }
+  .finding .tag.high { background: rgba(34,197,94,0.15); color: #22C55E; }
+
+  /* KILL LIST */
+  .kill { background: rgba(239,68,68,0.06); border-radius: 12px; padding: 16px 20px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+  .kill .x { color: #EF4444; font-size: 18px; font-weight: 800; }
+  .kill p { font-size: 13px; color: #64748B; }
+
+  /* PALETTES */
+  .palette-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+  .palette-card {
+    flex: 1; min-width: 260px; border-radius: 16px; overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.06); transition: all 0.3s; cursor: pointer;
+  }
+  .palette-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
+  .palette-card .colors { display: flex; height: 80px; }
+  .palette-card .colors div { flex: 1; }
+  .palette-card .info { padding: 20px; }
+  .palette-card .info h3 { font-size: 16px; margin-bottom: 4px; }
+  .palette-card .info p { font-size: 12px; color: #94A3B8; margin-bottom: 12px; }
+  .palette-card .hexes { display: flex; gap: 8px; flex-wrap: wrap; }
+  .palette-card .hex { font-family: monospace; font-size: 11px; color: #64748B; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 4px; }
+  .palette-card .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+
+  /* PREVIEW CARDS */
+  .preview-row { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 24px; }
+  .preview-card { flex: 1; min-width: 260px; border-radius: 16px; padding: 32px; text-align: center; }
+  .preview-card h3 { font-size: 22px; margin-bottom: 6px; }
+  .preview-card p { font-size: 13px; opacity: 0.7; margin-bottom: 20px; }
+  .preview-card .btn { display: inline-block; padding: 12px 32px; border-radius: 10px; font-weight: 700; font-size: 14px; }
+  .preview-card .logo { font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+
+  .rec { background: linear-gradient(135deg, rgba(255,107,90,0.1), rgba(0,201,167,0.1)); border: 1px solid rgba(255,107,90,0.3); border-radius: 16px; padding: 24px; margin-top: 32px; }
+  .rec h3 { color: #FF6B5A; font-size: 16px; margin-bottom: 8px; }
+  .rec p { color: #94A3B8; font-size: 14px; line-height: 1.7; }
+</style></head><body>
+
+<div class="hero">
+  <h1>🔬 תוצאות מחקר מיתוג EduPay</h1>
+  <p class="sub">DEEP RESEARCH — ADVERSARIALLY VERIFIED</p>
+  <div class="stats">
+    <div class="stat"><div class="num">19</div><div class="label">מקורות</div></div>
+    <div class="stat"><div class="num">88</div><div class="label">טענות</div></div>
+    <div class="stat"><div class="num">25</div><div class="label">אומתו</div></div>
+    <div class="stat"><div class="num">11</div><div class="label">שרדו ✓</div></div>
+    <div class="stat"><div class="num">14</div><div class="label">נפסלו ✗</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 1: LOGO -->
+  <div class="section">
+    <h2><span class="icon">✏️</span> לוגו — מה עובד?</h2>
+    <p class="verdict">המחקר ברור: <strong>Wordmark (שם כטקסט)</strong> עם פרט מוטמע עובד הכי טוב לסטארטאפ חדש. לא אייקון מופשט בלבד.</p>
+
+    <div class="finding">
+      <span class="tag high">אמינות גבוהה</span>
+      <h3>93% מלוגואים של SaaS משתמשים ב-Sans-Serif</h3>
+      <p>Wordmark עם פרט סמלי מוטמע (כמו החץ של Gett ב-G) מעביר מודרניות ודיגיטליות. מאפשר לקודד ערכי מותג ישירות באותיות. <strong>ל-EduPay:</strong> wordmark מותאם עם דטייל קינטי — אות נוטה קדימה, חץ מוטמע, או סימן תשלום מופשט.</p>
+    </div>
+
+    <div class="finding green">
+      <span class="tag high">אמינות גבוהה</span>
+      <h3>מותגי ילדים חייבים לאזן בין נגישות למקצועיות</h3>
+      <p>Brightwheel (SaaS מוביל לגנים): "בחרו פונטים שמאזנים בין נגישות ליכולת. הימנעו מפונטים ילדותיים מדי שעלולים לערער את אמון ההורים." <strong>ההורים הם הקונים</strong> — הם צריכים לראות מקצועיות, לא משחקיות.</p>
+    </div>
+
+    <div class="finding blue">
+      <span class="tag high">אמינות גבוהה</span>
+      <h3>לוגו דו-שפתי (עברית + אנגלית) = יתרון אסטרטגי</h3>
+      <p>78.3% מהנשאלים שייכו לוגו דו-שפתי למקצועיות גבוהה יותר. <strong>ל-EduPay:</strong> "EduPay" באנגלית כ-wordmark ראשי. "אדיופיי" בעברית כ-lockup משני לשוק הישראלי. לא לערבב שפות בתוך מילה אחת.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: WHAT NOT TO DO -->
+  <div class="section">
+    <h2><span class="icon">🚫</span> מה לא לעשות — נפסל במחקר</h2>
+    <div class="kill"><span class="x">✗</span><p><strong>כחול כצבע ראשי</strong> — 40% מ-Fortune 500 כבר משתמשים בו. מוריד זכירות מותג ב-25%</p></div>
+    <div class="kill"><span class="x">✗</span><p><strong>סגול כצבע ראשי</strong> — הפך ל"צבע ברירת מחדל של פינטק". יוצר brand blending</p></div>
+    <div class="kill"><span class="x">✗</span><p><strong>אייקון מופשט בלבד</strong> — דורש תקציב פרסום ענק לבנות זיהוי. לא לסטארטאפ</p></div>
+    <div class="kill"><span class="x">✗</span><p><strong>פונטים ילדותיים</strong> — מערערים אמון הורים. ההורים משלמים, לא הילדים</p></div>
+    <div class="kill"><span class="x">✗</span><p><strong>עיצוב קר-תאגידי</strong> — Helvetica Neue style. אתם לא בנק, אתם דיסרפטורים</p></div>
+  </div>
+
+  <!-- SECTION 3: COLORS -->
+  <div class="section">
+    <h2><span class="icon">🎨</span> צבעים — 3 כיוונים מומלצים</h2>
+    <p class="verdict">הנוסחה שאומתה: <strong>צבע ראשי חם ונועז</strong> (אנרגיה, נוער, חוצפה) + <strong>כהה משני</strong> (אמינות) + <strong>אקסנט בהיר</strong> (רעננות)</p>
+
+    <div class="palette-grid">
+      <!-- PALETTE A: CORAL -->
+      <div class="palette-card">
+        <div class="colors">
+          <div style="background: #FF6B5A;"></div>
+          <div style="background: #1E3A5F;"></div>
+          <div style="background: #00C9A7;"></div>
+          <div style="background: #2D3436;"></div>
+          <div style="background: #F8FAFC;"></div>
+        </div>
+        <div class="info">
+          <span class="badge" style="background: #FF6B5A; color: #fff;">★ המלצת המחקר</span>
+          <h3>Coral Bold</h3>
+          <p>חם, אנרגטי, צעיר. כמו Monzo שניסו לרשום פטנט על הצבע שלהם. בולט מיד.</p>
+          <div class="hexes">
+            <span class="hex">#FF6B5A</span>
+            <span class="hex">#1E3A5F</span>
+            <span class="hex">#00C9A7</span>
+            <span class="hex">#2D3436</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PALETTE B: ORANGE -->
+      <div class="palette-card">
+        <div class="colors">
+          <div style="background: #FF8C42;"></div>
+          <div style="background: #1A2744;"></div>
+          <div style="background: #14B8A6;"></div>
+          <div style="background: #1E293B;"></div>
+          <div style="background: #F8FAFC;"></div>
+        </div>
+        <div class="info">
+          <span class="badge" style="background: #FF8C42; color: #fff;">OPTION B</span>
+          <h3>Sunset Energy</h3>
+          <p>כתום אנרגטי — מעביר ביטחון, אנרגיה ונגישות. חם ומזמין להורים.</p>
+          <div class="hexes">
+            <span class="hex">#FF8C42</span>
+            <span class="hex">#1A2744</span>
+            <span class="hex">#14B8A6</span>
+            <span class="hex">#1E293B</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PALETTE C: TEAL BOLD -->
+      <div class="palette-card">
+        <div class="colors">
+          <div style="background: #00B4A6;"></div>
+          <div style="background: #0F172A;"></div>
+          <div style="background: #FF6B5A;"></div>
+          <div style="background: #1E293B;"></div>
+          <div style="background: #F8FAFC;"></div>
+        </div>
+        <div class="info">
+          <span class="badge" style="background: #00B4A6; color: #fff;">OPTION C</span>
+          <h3>Bold Teal</h3>
+          <p>טיל נועז — קרוב למה שיש לנו, אבל עם קורל כאקסנט חם. מאוזן.</p>
+          <div class="hexes">
+            <span class="hex">#00B4A6</span>
+            <span class="hex">#0F172A</span>
+            <span class="hex">#FF6B5A</span>
+            <span class="hex">#1E293B</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIEWS -->
+    <div class="preview-row">
+      <div class="preview-card" style="background: #0F172A;">
+        <div class="logo"><span style="color: #fff;">Edu</span><span style="color: #FF6B5A;">Pay</span></div>
+        <h3 style="color: #fff;">גבייה דיגיטלית חכמה</h3>
+        <p style="color: #94A3B8;">רישום, תשלום וניהול — במקום אחד</p>
+        <div class="btn" style="background: #FF6B5A; color: #fff;">התחל עכשיו →</div>
+      </div>
+      <div class="preview-card" style="background: #0F172A;">
+        <div class="logo"><span style="color: #fff;">Edu</span><span style="color: #FF8C42;">Pay</span></div>
+        <h3 style="color: #fff;">גבייה דיגיטלית חכמה</h3>
+        <p style="color: #94A3B8;">רישום, תשלום וניהול — במקום אחד</p>
+        <div class="btn" style="background: #FF8C42; color: #fff;">התחל עכשיו →</div>
+      </div>
+      <div class="preview-card" style="background: #0F172A;">
+        <div class="logo"><span style="color: #fff;">Edu</span><span style="color: #00B4A6;">Pay</span></div>
+        <h3 style="color: #fff;">גבייה דיגיטלית חכמה</h3>
+        <p style="color: #94A3B8;">רישום, תשלום וניהול — במקום אחד</p>
+        <div class="btn" style="background: #00B4A6; color: #fff;">התחל עכשיו →</div>
+      </div>
+    </div>
+
+    <div class="rec">
+      <h3>💡 המלצה סופית מהמחקר</h3>
+      <p><strong>Coral Bold (#FF6B5A)</strong> — הכי בולט, הכי "חוצפה". Monzo הצליחו כל כך עם קורל שניסו לרשום עליו סימן מסחרי. משדר: צעיר, מהיר, נועז, אנרגטי. בשילוב עם navy כהה (#1E3A5F) לאמינות ו-mint (#00C9A7) לרעננות — מקבלים מותג שהוא גם אמין וגם דיסרפטיבי. ירוק (#22C55E) רק ל-UI success states (אישורי תשלום).</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4: TYPOGRAPHY -->
+  <div class="section">
+    <h2><span class="icon">🔤</span> טיפוגרפיה</h2>
+    <div class="finding green">
+      <h3>המלצה: Rounded Geometric Sans-Serif</h3>
+      <p>פונטים מומלצים: <strong>Plus Jakarta Sans, Inter, Nunito Sans</strong>. נקראים כידידותיים אבל לא ילדותיים. הורים רואים מקצועיות, לא גן ילדים. <strong>להימנע מ:</strong> Comic Sans וכדומה, פונטים דקורטיביים כבדים, או סגנון תאגידי קר כמו Helvetica Neue.</p>
+    </div>
+  </div>
+
+</div>
+</body></html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>EduPay Logo Preview</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: system-ui; display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 40px; }
+  .row { display: flex; gap: 60px; align-items: center; }
+  .card { padding: 40px 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; }
+  .dark { background: #0A0F1C; }
+  .light { background: #F8FAFC; border: 1px solid #E2E8F0; }
+  h2 { color: #64748B; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; text-align: center; }
+  img { height: 60px; }
+  .icon img { height: 80px; }
+</style></head><body>
+  <h2>Dark Background (Primary)</h2>
+  <div class="row">
+    <div class="card dark"><img src="logo.svg"></div>
+    <div class="card dark icon"><img src="logo-icon.svg"></div>
+  </div>
+  <h2>Light Background</h2>
+  <div class="row">
+    <div class="card light"><img src="logo-dark.svg"></div>
+    <div class="card light icon"><img src="logo-icon.svg"></div>
+  </div>
+</body></html>
