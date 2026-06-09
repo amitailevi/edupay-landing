@@ -8,12 +8,14 @@
   document.querySelector('.mobile-toggle')?.addEventListener('click', () =>
     document.querySelector('.nav-links').classList.toggle('open'));
 
-  // Scroll animations
+  // Scroll animations — trigger immediately for visible elements
   const observer = new IntersectionObserver(entries =>
     entries.forEach(e => e.isIntersecting && e.target.classList.add('show')),
-    { threshold: 0.1 }
+    { threshold: 0.05, rootMargin: '50px' }
   );
-  document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el));
+  requestAnimationFrame(() =>
+    document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el))
+  );
 
   // Smooth anchor links
   document.querySelectorAll('a[href^="#"]').forEach(a =>
