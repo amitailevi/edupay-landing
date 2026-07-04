@@ -117,15 +117,6 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 .hero-stat .num { font-size: 32px; font-weight: 800; color: var(--coral); }
 .hero-stat .label { font-size: 13px; color: var(--muted); margin-top: 4px; }
 
-/* LOGOS BAR */
-.logos-bar {
-  padding: 48px 0; border-bottom: 1px solid var(--border);
-  text-align: center;
-}
-.logos-bar p { font-size: 12px; color: var(--muted); letter-spacing: 3px; margin-bottom: 24px; text-transform: uppercase; }
-.logos-row { display: flex; justify-content: center; gap: 48px; align-items: center; flex-wrap: wrap; opacity: 0.4; }
-.logos-row span { font-size: 18px; font-weight: 700; color: var(--muted); }
-
 /* FEATURES */
 .features { padding: 100px 0; }
 .section-header { text-align: center; margin-bottom: 56px; }
@@ -142,7 +133,7 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 .feature-card:hover { border-color: rgba(255,107,90,0.3); transform: translateY(-4px); }
 .feature-card::after {
   content: ''; position: absolute; top: 0; right: 0; left: 0; height: 3px;
-  background: linear-gradient(90deg, var(--coral), var(--mint));
+  background: linear-gradient(to left, var(--coral), var(--mint));
   opacity: 0; transition: opacity 0.3s;
 }
 .feature-card:hover::after { opacity: 1; }
@@ -159,7 +150,7 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
 .steps::before {
   content: ''; position: absolute; top: 40px; right: 60px; left: 60px;
-  height: 2px; background: linear-gradient(90deg, var(--coral), var(--mint));
+  height: 2px; background: linear-gradient(to left, var(--coral), var(--mint));
   opacity: 0.3;
 }
 .step { text-align: center; position: relative; }
@@ -186,7 +177,7 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
   background: linear-gradient(180deg, rgba(255,107,90,0.08), var(--card));
 }
 .price-card.featured::before {
-  content: 'פופולרי'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  content: 'פופולרי'; position: absolute; top: -12px; right: 50%; transform: translateX(50%);
   background: var(--coral); color: #fff; padding: 4px 16px; border-radius: 100px;
   font-size: 12px; font-weight: 700;
 }
@@ -234,7 +225,7 @@ footer {
 .footer-bottom p { font-size: 12px; color: var(--muted); }
 
 /* ANIMATIONS */
-[data-anim] { opacity: 1; transform: none; }
+[data-anim] { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
 [data-anim].show { opacity: 1; transform: none; }
 
 /* RESPONSIVE */
@@ -251,4 +242,6 @@ footer {
   .steps::before { display: none; }
   .pricing-grid { grid-template-columns: 1fr; }
   .hero-stats { flex-direction: column; gap: 16px; }
+  .hero { padding: 120px 0 60px; }
+  .hero h1 { font-size: 2rem; }
 }
