@@ -165,8 +165,31 @@
       border: 1px solid rgba(20,241,149,.35); background: rgba(20,241,149,.08);
       border-radius: 14px; padding: 14px; font-size: 0.95rem; margin-top: 16px;
     }
+    .token-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .link-slot {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+      text-align: left; width: 100%;
+      background: var(--card); border: 1px solid var(--border); color: var(--text);
+      border-radius: 16px; padding: 16px; font: inherit; text-decoration: none;
+    }
+    .link-slot .slot-name { font-weight: 800; }
+    .link-slot .slot-state { color: var(--muted); font-size: 13px; font-weight: 600; }
+    .link-slot.is-disabled { opacity: 0.62; cursor: not-allowed; pointer-events: none; }
+    .mint-field {
+      margin-top: 14px; display: grid; grid-template-columns: 1fr auto; gap: 10px;
+      align-items: center; background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 14px;
+    }
+    .mint-field label { grid-column: 1 / -1; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+    .mint-field p { margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; word-break: break-all; }
+    .mint-field button {
+      border: 1px solid var(--border); background: transparent; color: var(--text);
+      border-radius: 10px; padding: 8px 12px; font-weight: 700; cursor: pointer;
+    }
+    .mint-field button:disabled { opacity: 0.5; cursor: not-allowed; }
     @media (max-width: 860px) {
-      .hero, .ticker-row, .grid, .grid-2, .facts { grid-template-columns: 1fr; }
+      .hero, .ticker-row, .grid, .grid-2, .facts, .token-links { grid-template-columns: 1fr; }
+      .mint-field { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -206,12 +229,12 @@
         <span>SolEdu <span class="gradient">SEDU</span></span>
       </div>
       <nav>
-        <a href="#problem">Problem</a>
-        <a href="#product">Product</a>
+        <a href="#links">Token links</a>
+        <a href="#rails">Rails</a>
+        <a href="#institutions">Institutions</a>
         <a href="#token">Token</a>
-        <a href="#roadmap">Roadmap</a>
         <a href="#buy">How to buy</a>
-        <a href="#links">Links</a>
+        <a href="#roadmap">Roadmap</a>
       </nav>
     </header>
 
@@ -219,17 +242,77 @@
       <div>
         <div class="pill">On Solana · Education payments</div>
         <h1>Education payments &amp; transparent fundraising<br /><span class="gradient">at Solana speed</span></h1>
-        <p class="lead">SolEdu (SEDU) is a Solana SPL utility token for education money flows — on-chain settlement for payments and transparent fundraising between families, institutions, and operators.</p>
+        <p class="lead">SolEdu (SEDU) is the community and fundraising token. Education institutions settle tuition and fees on a dollar-pegged rail so operating money is not exposed to crypto volatility.</p>
         <p class="credit">Built by education operators with multi-site program experience. Fast, low-fee rails. Not investment advice.</p>
         <div class="cta">
-          <a class="btn btn-primary" href="#buy">Buy (soon)</a>
-          <a class="btn btn-ghost" href="#links">Chart / Community</a>
+          <a class="btn btn-primary" href="#links">Token links</a>
+          <a class="btn btn-ghost" href="#rails">Two rails</a>
         </div>
       </div>
       <div class="hero-card">
         <img class="banner" src="banner.png" alt="SolEdu banner" />
         <div><strong>Official mint address</strong></div>
-        <p class="mint" id="mint">MINT_ADDRESS — updates at launch</p>
+        <p class="mint" id="mint">Mint address publishes at launch</p>
+      </div>
+    </section>
+
+    <section id="links">
+      <h2>Token links</h2>
+      <p class="sub">Coming at launch. Solscan, Jupiter, and DexScreener stay inactive until the official mint is set in this page. No explorer, swap, or chart address is published before that.</p>
+      <div class="token-links">
+        <a class="link-slot is-disabled" id="link-solscan" aria-disabled="true">
+          <span class="slot-name">Solscan (mint)</span>
+          <span class="slot-state">Launching soon</span>
+        </a>
+        <a class="link-slot is-disabled" id="link-jupiter" aria-disabled="true">
+          <span class="slot-name">Jupiter swap</span>
+          <span class="slot-state">Launching soon</span>
+        </a>
+        <a class="link-slot is-disabled" id="link-dex" aria-disabled="true">
+          <span class="slot-name">DexScreener chart</span>
+          <span class="slot-state">Launching soon</span>
+        </a>
+      </div>
+      <div class="mint-field">
+        <label for="mint-display">Official mint copy field</label>
+        <p id="mint-display">Mint address publishes at launch</p>
+        <button type="button" id="mint-copy" disabled>Copy</button>
+      </div>
+    </section>
+
+    <section id="rails">
+      <h2>Two rails for education institutions</h2>
+      <p class="sub">Families and institutions settle stable value. SEDU is the ecosystem and fundraising layer — not a place to put school budgets into a volatile token.</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="pill">SEDU</div>
+          <h3>Utility, community, fundraising</h3>
+          <p>SolEdu (SEDU) is a Solana token that aligns supporters with the product and funds what comes next. It is not the balance schools should hold for payroll, rent, or tuition already collected.</p>
+        </div>
+        <div class="card">
+          <div class="pill">USD-pegged</div>
+          <h3>Settlement that holds its value</h3>
+          <p>Tuition, fees, and institutional balances use a dollar-stable rail — Solana USDC or an institution-facing USD-pegged token — so schools and academic institutions do not take FX or crypto volatility risk on money meant for operations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="institutions">
+      <h2>How institutions use it</h2>
+      <p class="sub">Registration and collections for schools, after-school programs, and academic institutions internationally. SEDU does not power live billing today.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Registration and collections</h3>
+          <p>Programs enroll families and collect fees without a pile of disconnected forms and payment pages.</p>
+        </div>
+        <div class="card">
+          <h3>Transparent movement</h3>
+          <p>On-chain records where they help operators and communities see what moved. Day-to-day balances stay on the dollar-pegged rail.</p>
+        </div>
+        <div class="card">
+          <h3>Operator dashboards</h3>
+          <p>Enrollment, invoices, and payment status across branches — the operating picture from education-operator practice. No private phone numbers or passwords are published here.</p>
+        </div>
       </div>
     </section>
 
@@ -266,8 +349,8 @@
           <p>A transparent community raise to fund the product. Follow this page for the official mint and trade links only.</p>
         </div>
         <div class="card">
-          <h3>Phase 2 — Rails</h3>
-          <p>Later settlement for registration and collections between families, schools and other institutions, and operators — including academic programs internationally.</p>
+          <h3>Phase 2 — Stable settlement</h3>
+          <p>Registration and collections settle on a USD-pegged rail. SEDU stays the community and fundraising layer beside that, including for academic programs internationally.</p>
         </div>
         <div class="card">
           <h3>Not advice</h3>
@@ -330,11 +413,11 @@
         <div class="fact"><span>Total supply</span><strong>1,000,000,000</strong></div>
         <div class="fact"><span>Category</span><strong>Utility — education payments &amp; transparent fundraising</strong></div>
         <div class="fact"><span>Status</span><strong>Pre-launch</strong></div>
-        <div class="fact"><span>Official mint</span><strong>MINT_ADDRESS — updates at launch</strong></div>
+        <div class="fact"><span>Official mint</span><strong id="mint-fact">Mint address publishes at launch</strong></div>
       </div>
       <ul class="uses">
-        <li>Community fundraising to fund the product.</li>
-        <li>Later settlement rails for registration and collections between families, institutions, and operators.</li>
+        <li>Community fundraising that aligns supporters with product growth.</li>
+        <li>Not the operating balance for tuition. Fees and institutional money settle on a USD-pegged rail.</li>
       </ul>
     </section>
 
@@ -409,25 +492,6 @@
       </div>
     </section>
 
-    <section id="links">
-      <h2>Official links</h2>
-      <p class="sub">Placeholders until launch. We will not point these at an unofficial mint.</p>
-      <div class="grid">
-        <div class="card">
-          <h3>Jupiter</h3>
-          <p id="link-jupiter">Coming soon</p>
-        </div>
-        <div class="card">
-          <h3>DexScreener</h3>
-          <p id="link-dex">Coming soon</p>
-        </div>
-        <div class="card">
-          <h3>Explorer</h3>
-          <p id="link-explorer">Coming soon</p>
-        </div>
-      </div>
-    </section>
-
     <footer>
       <div>© SolEdu (SEDU). Built on Solana. Pre-launch — mint and buy link update at launch.</div>
     </footer>
@@ -435,6 +499,7 @@
 
   <script>
     (function () {
+      const MINT = "";
       var BINANCE = "https://data-api.binance.vision/api/v3/ticker/24hr?symbol=";
       var GECKO = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,solana&vs_currencies=usd&include_24hr_change=true";
       var hasQuote = false;
@@ -557,6 +622,51 @@
         }).catch(unavailable);
       }
 
+      function liveMint(value) {
+        var mint = String(value || "").trim();
+        if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(mint)) return "";
+        return mint;
+      }
+
+      function setSlot(id, href, state) {
+        var el = document.getElementById(id);
+        el.querySelector(".slot-state").textContent = state;
+        if (href) {
+          el.href = href;
+          el.target = "_blank";
+          el.rel = "noopener noreferrer";
+          el.classList.remove("is-disabled");
+          el.removeAttribute("aria-disabled");
+        } else {
+          el.removeAttribute("href");
+          el.classList.add("is-disabled");
+          el.setAttribute("aria-disabled", "true");
+        }
+      }
+
+      function applyMint() {
+        var mint = liveMint(MINT);
+        var label = mint || "Mint address publishes at launch";
+        document.getElementById("mint").textContent = label;
+        document.getElementById("mint-display").textContent = label;
+        document.getElementById("mint-fact").textContent = label;
+        var copyBtn = document.getElementById("mint-copy");
+        copyBtn.disabled = !mint;
+        copyBtn.onclick = function () {
+          if (mint && navigator.clipboard) navigator.clipboard.writeText(mint);
+        };
+        if (mint) {
+          setSlot("link-solscan", "https://solscan.io/token/" + mint, "Open");
+          setSlot("link-jupiter", "https://jup.ag/swap/SOL-" + mint, "Open");
+          setSlot("link-dex", "https://dexscreener.com/solana/" + mint, "Open");
+        } else {
+          setSlot("link-solscan", "", "Launching soon");
+          setSlot("link-jupiter", "", "Launching soon");
+          setSlot("link-dex", "", "Launching soon");
+        }
+      }
+
+      applyMint();
       refresh();
       setInterval(refresh, 45000);
     })();
