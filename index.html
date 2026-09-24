@@ -1,223 +1,285 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduPay — גבייה דיגיטלית לצהרונים, חוגים וקייטנות</title>
-  <meta name="description" content="EduPay - מערכת גבייה דיגיטלית חכמה. רישום, תשלום וניהול אוטומטי לצהרונים, חוגים וקייטנות.">
-  <meta property="og:title" content="EduPay — גבייה דיגיטלית שעובדת לבד">
-  <meta property="og:description" content="רישום ותשלום אונליין לצהרונים, חוגים וקייטנות. ההורים משלמים בקליק.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://amitailevi.github.io/edupay-landing/">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SolEdu (SEDU) — Education payments on Solana</title>
+  <meta name="description" content="SolEdu (SEDU) — תשלומי חינוך וגיוס שקוף על Solana. Fast, low-fee rails for education payments and transparent fundraising." />
+  <meta property="og:title" content="SolEdu (SEDU)" />
+  <meta property="og:description" content="Education payments and transparent fundraising on Solana." />
+  <meta property="og:image" content="banner.png" />
+  <link rel="icon" href="logo.png" />
+  <style>
+    :root {
+      --bg: #070b1a;
+      --bg2: #121833;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: #f4f6ff;
+      --muted: #a9b1d6;
+      --violet: #7c5cff;
+      --cyan: #14f195;
+      --purple: #9945ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(124,92,255,.35), transparent 60%),
+                  radial-gradient(900px 500px at 0% 20%, rgba(20,241,149,.12), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { width: min(1080px, 92%); margin: 0 auto; }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0; gap: 16px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+    .brand img { width: 44px; height: 44px; border-radius: 12px; }
+    nav { display: flex; gap: 18px; flex-wrap: wrap; font-size: 14px; }
+    nav a { color: var(--muted); }
+    .hero {
+      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 36px;
+      align-items: center; padding: 40px 0 24px;
+    }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      nav { display: none; }
+    }
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.15; margin: 0 0 14px;
+    }
+    .gradient {
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lead { color: var(--muted); font-size: 1.1rem; margin: 0 0 22px; max-width: 36rem; }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 18px; border-radius: 12px; font-weight: 700; border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--violet), var(--purple));
+      color: white;
+    }
+    .btn-ghost {
+      background: transparent; border-color: var(--border); color: var(--text);
+    }
+    .hero-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 24px; padding: 22px; backdrop-filter: blur(8px);
+    }
+    .hero-card img.banner {
+      width: 100%; border-radius: 16px; display: block; margin-bottom: 14px;
+    }
+    .pill {
+      display: inline-block; font-size: 12px; padding: 4px 10px; border-radius: 999px;
+      background: rgba(20,241,149,.12); color: var(--cyan); border: 1px solid rgba(20,241,149,.35);
+      margin-bottom: 10px;
+    }
+    .mint {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px; word-break: break-all; color: var(--muted);
+      background: rgba(0,0,0,.35); padding: 10px 12px; border-radius: 10px;
+    }
+    section { padding: 48px 0; }
+    h2 { font-size: 1.6rem; margin: 0 0 18px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 18px; padding: 18px;
+    }
+    .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .steps { counter-reset: step; display: grid; gap: 12px; }
+    .step {
+      display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: start;
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 14px;
+    }
+    .step::before {
+      counter-increment: step; content: counter(step);
+      width: 40px; height: 40px; border-radius: 12px;
+      display: grid; place-items: center; font-weight: 800;
+      background: linear-gradient(135deg, var(--violet), var(--cyan)); color: #071018;
+    }
+    .lang-toggle {
+      display: inline-flex; gap: 6px; background: rgba(255,255,255,.06);
+      border: 1px solid var(--border); border-radius: 999px; padding: 4px;
+    }
+    .lang-toggle button {
+      border: 0; background: transparent; color: var(--muted);
+      padding: 6px 12px; border-radius: 999px; cursor: pointer; font-weight: 700;
+    }
+    .lang-toggle button.active { background: rgba(124,92,255,.35); color: white; }
+    .en { display: none; }
+    body.en-mode .he { display: none; }
+    body.en-mode .en { display: block; }
+    body.en-mode .en-inline { display: inline; }
+    .en-inline { display: none; }
+    body.en-mode { direction: ltr; }
+    footer {
+      border-top: 1px solid var(--border); padding: 28px 0 40px; color: var(--muted); font-size: 14px;
+    }
+    .warn {
+      border: 1px solid rgba(255,180,80,.35); background: rgba(255,180,80,.08);
+      color: #ffd9a8; border-radius: 14px; padding: 14px; font-size: 0.92rem;
+    }
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="logo.png" alt="SEDU logo" />
+        <span>SolEdu <span class="gradient">SEDU</span></span>
+      </div>
+      <nav>
+        <a href="#about" class="he">מה זה</a>
+        <a href="#about" class="en en-inline">About</a>
+        <a href="#buy" class="he">איך קונים</a>
+        <a href="#buy" class="en en-inline">How to buy</a>
+        <a href="#links" class="he">קישורים</a>
+        <a href="#links" class="en en-inline">Links</a>
+      </nav>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" id="btn-he" class="active" onclick="setLang('he')">עברית</button>
+        <button type="button" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </header>
 
-  <!-- NAV -->
-  <nav>
-    <div class="container">
-      <a href="#" class="nav-logo"><span>Edu</span><span class="coral">Pay</span></a>
-      <div class="nav-links">
-        <a href="#features">יתרונות</a>
-        <a href="#how">איך זה עובד</a>
-        <a href="#pricing">מחירים</a>
-        <a href="#contact" class="nav-cta">דברו איתנו</a>
+    <section class="hero">
+      <div>
+        <div class="pill he">על Solana · תשלומי חינוך</div>
+        <div class="pill en">On Solana · Education payments</div>
+        <h1 class="he">תשלומי חינוך וגיוס שקוף<br /><span class="gradient">במהירות של Solana</span></h1>
+        <h1 class="en">Education payments & transparent fundraising<br /><span class="gradient">at Solana speed</span></h1>
+        <p class="lead he">SEDU הוא טוקן תשתית לרישום, גבייה ותנועת כספים בעולם החינוך — עם עמלות נמוכות ושקיפות on-chain.</p>
+        <p class="lead en">SEDU is infrastructure for registration, collections, and education money flows — with low fees and on-chain transparency.</p>
+        <div class="cta">
+          <a class="btn btn-primary he" href="#buy" id="cta-buy-he">קנייה (בקרוב)</a>
+          <a class="btn btn-primary en" href="#buy" id="cta-buy-en">Buy (soon)</a>
+          <a class="btn btn-ghost he" href="#links">צ׳ארט / קהילה</a>
+          <a class="btn btn-ghost en" href="#links">Chart / Community</a>
+        </div>
       </div>
-      <button class="mobile-toggle" aria-label="תפריט">☰</button>
-    </div>
-  </nav>
+      <div class="hero-card">
+        <img class="banner" src="banner.png" alt="SolEdu banner" />
+        <div class="he"><strong>כתובת Mint הרשמית</strong></div>
+        <div class="en"><strong>Official Mint address</strong></div>
+        <p class="mint" id="mint">MINT_ADDRESS — יעודכן בהשקה / updates at launch</p>
+      </div>
+    </section>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        חדש — השקה 2026
-      </div>
-      <h1>גבייה דיגיטלית<br><span class="coral">שעובדת לבד</span></h1>
-      <p>רישום ותשלום אונליין לצהרונים, חוגים וקייטנות. ההורים משלמים בקליק, אתם מנהלים הכל ממקום אחד.</p>
-      <div class="hero-buttons">
-        <a href="#contact" class="btn-primary">התחילו בחינם →</a>
-        <a href="#how" class="btn-secondary">איך זה עובד?</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="num" data-count="15000" data-suffix="+">15,000+</div>
-          <div class="label">הורים משתמשים</div>
+    <section id="about">
+      <h2 class="he">למה SEDU</h2>
+      <h2 class="en">Why SEDU</h2>
+      <div class="grid">
+        <div class="card">
+          <h3 class="he">גבייה פשוטה יותר</h3>
+          <h3 class="en">Simpler collections</h3>
+          <p class="he">מסלול תשלום מהיר למוסדות, הורים ומפעילים — בלי חיכוך מיותר.</p>
+          <p class="en">A fast payment path for institutions, families, and operators — less friction.</p>
         </div>
-        <div class="hero-stat">
-          <div class="num" data-count="98" data-suffix="%">98%</div>
-          <div class="label">שיעור גבייה</div>
+        <div class="card">
+          <h3 class="he">שקיפות בגיוס</h3>
+          <h3 class="en">Transparent fundraising</h3>
+          <p class="he">תנועות כסף נראות על הרשת. פחות “איפה הכסף”, יותר מעקב ברור.</p>
+          <p class="en">Money movement is visible on-chain. Less guesswork, clearer tracking.</p>
         </div>
-        <div class="hero-stat">
-          <div class="num" data-count="30" data-suffix="">30</div>
-          <div class="label">שניות לרישום</div>
+        <div class="card">
+          <h3 class="he">בינלאומי, על Solana</h3>
+          <h3 class="en">Global, on Solana</h3>
+          <p class="he">עמלות נמוכות ואישורים מהירים — מתאים למוצר חוצה גבולות.</p>
+          <p class="en">Low fees and fast confirmation — built for a cross-border product.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FEATURES -->
-  <section class="features" id="features">
-    <div class="container">
-      <div class="section-header">
-        <div class="tag">למה EDUPAY</div>
-        <h2>הכל במקום אחד. בלי בלאגן.</h2>
-        <p>שכחו מאקסלים, העברות בנקאיות וטלפונים. הכל דיגיטלי, הכל אוטומטי.</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--coral-glow);">💳</div>
-          <h3>תשלום בקליק</h3>
-          <p>ההורים מקבלים לינק, בוחרים מסלול, משלמים. בלי לרדוף, בלי לשלוח תזכורות.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: rgba(0,201,167,0.1);">📝</div>
-          <h3>רישום דיגיטלי</h3>
-          <p>טופס רישום חכם עם חתימה דיגיטלית, אישורי בריאות והצהרות — הכל אונליין.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: rgba(30,58,95,0.3);">⚡</div>
-          <h3>ניהול אוטומטי</h3>
-          <p>תזכורות אוטומטיות, דוחות בזמן אמת, ניהול חובות — המערכת עובדת בשבילכם.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--coral-glow);">📊</div>
-          <h3>דשבורד בזמן אמת</h3>
-          <p>תמונת מצב מלאה: מי שילם, מי לא, כמה נכנס החודש. בלחיצה אחת.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: rgba(0,201,167,0.1);">🔒</div>
-          <h3>אבטחה מקסימלית</h3>
-          <p>תקן PCI DSS, הצפנה מקצה לקצה, עמידה ברגולציה ישראלית. הכסף בטוח.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: rgba(30,58,95,0.3);">🏛️</div>
-          <h3>מותאם לרשויות</h3>
-          <p>ממשק ייעודי לרשויות מקומיות, מתנ"סים ועמותות. דיווח, בקרה ושקיפות מלאה.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="how" id="how">
-    <div class="container">
-      <div class="section-header">
-        <div class="tag">איך זה עובד</div>
-        <h2>מרישום לתשלום ב-30 שניות</h2>
-        <p>תהליך פשוט שההורים אוהבים והמנהלים צריכים</p>
-      </div>
+    <section id="buy">
+      <h2 class="he">איך קונים</h2>
+      <h2 class="en">How to buy</h2>
       <div class="steps">
         <div class="step">
-          <div class="step-num">1</div>
-          <h3>לינק לרישום</h3>
-          <p>שולחים להורים SMS או וואטסאפ עם לינק אישי לרישום</p>
+          <div>
+            <strong class="he">פתחו ארנק</strong>
+            <strong class="en">Open a wallet</strong>
+            <p class="he" style="margin:.35rem 0 0;color:var(--muted)">Phantom או Solflare.</p>
+            <p class="en" style="margin:.35rem 0 0;color:var(--muted)">Phantom or Solflare.</p>
+          </div>
         </div>
         <div class="step">
-          <div class="step-num">2</div>
-          <h3>בחירת מסלול</h3>
-          <p>ההורים בוחרים מסלול, ממלאים פרטים וחותמים דיגיטלית</p>
+          <div>
+            <strong class="he">העבירו קצת SOL</strong>
+            <strong class="en">Add a little SOL</strong>
+            <p class="he" style="margin:.35rem 0 0;color:var(--muted)">לעמלות רשת ולקנייה.</p>
+            <p class="en" style="margin:.35rem 0 0;color:var(--muted)">For network fees and the swap.</p>
+          </div>
         </div>
         <div class="step">
-          <div class="step-num">3</div>
-          <h3>תשלום מאובטח</h3>
-          <p>כרטיס אשראי, הוראת קבע או תשלומים — הכל מאובטח</p>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <h3>ניהול אוטומטי</h3>
-          <p>אישור מיידי, דוח בזמן אמת, תזכורות אוטומטיות</p>
+          <div>
+            <strong class="he">החליפו ב־Jupiter</strong>
+            <strong class="en">Swap on Jupiter</strong>
+            <p class="he" style="margin:.35rem 0 0;color:var(--muted)">הדביקו את כתובת ה־mint הרשמית בלבד.</p>
+            <p class="en" style="margin:.35rem 0 0;color:var(--muted)">Paste only the official mint address.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+      <p style="margin-top:16px" class="he">קישור קנייה יתווסף כאן בהשקה.</p>
+      <p style="margin-top:16px" class="en">Buy link will be added here at launch.</p>
+    </section>
 
-  <!-- PRICING -->
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <div class="section-header">
-        <div class="tag">מחירים</div>
-        <h2>פשוט, שקוף, בלי הפתעות</h2>
-        <p>תשלום חודשי גמיש. בלי התחייבות שנתית.</p>
-      </div>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <h3>Starter</h3>
-          <div class="desc">לצהרון בודד או חוג קטן</div>
-          <div class="price">₪299 <span>/ חודש</span></div>
-          <div class="period">עד 100 ילדים</div>
-          <ul>
-            <li>רישום ותשלום דיגיטלי</li>
-            <li>דשבורד בסיסי</li>
-            <li>תזכורות SMS</li>
-            <li>תמיכה במייל</li>
-          </ul>
-          <button class="price-btn">התחילו בחינם</button>
+    <section id="links">
+      <h2 class="he">קישורים רשמיים</h2>
+      <h2 class="en">Official links</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Jupiter</h3>
+          <p id="link-jupiter">בקרוב / Coming soon</p>
         </div>
-        <div class="price-card featured">
-          <h3>Professional</h3>
-          <div class="desc">לרשת צהרונים או מתנ"ס</div>
-          <div class="price">₪699 <span>/ חודש</span></div>
-          <div class="period">עד 500 ילדים</div>
-          <ul>
-            <li>כל מה שב-Starter</li>
-            <li>ריבוי סניפים</li>
-            <li>דוחות מתקדמים</li>
-            <li>API לחיבור מערכות</li>
-            <li>תמיכה טלפונית</li>
-          </ul>
-          <button class="price-btn">התחילו בחינם</button>
+        <div class="card">
+          <h3>DexScreener</h3>
+          <p id="link-dex">בקרוב / Coming soon</p>
         </div>
-        <div class="price-card">
-          <h3>Enterprise</h3>
-          <div class="desc">לרשויות מקומיות</div>
-          <div class="price">בואו נדבר</div>
-          <div class="period">ללא הגבלה</div>
-          <ul>
-            <li>כל מה שב-Professional</li>
-            <li>התאמה מלאה לרשות</li>
-            <li>SLA מובטח</li>
-            <li>הטמעה ייעודית</li>
-            <li>מנהל לקוח צמוד</li>
-          </ul>
-          <button class="price-btn">צרו קשר</button>
+        <div class="card">
+          <h3>Explorer</h3>
+          <p id="link-explorer">בקרוב / Coming soon</p>
         </div>
       </div>
-    </div>
-  </section>
+      <div style="height:16px"></div>
+      <div class="warn he">
+        <strong>בטיחות:</strong> לעולם לא נבקש seed או מפתח פרטי. סמכו רק על ה־mint בעמוד הזה.
+        זהו כלי תשתית/תשלומים — לא ייעוץ השקעות ואין הבטחת תשואה.
+      </div>
+      <div class="warn en">
+        <strong>Safety:</strong> We will never ask for your seed phrase. Trust only the mint on this page.
+        This is payment/infrastructure tooling — not investment advice and no return guarantee.
+      </div>
+    </section>
 
-  <!-- CTA -->
-  <section class="cta-section" id="contact">
-    <div class="container">
-      <div class="cta-box">
-        <h2>מוכנים לגבות <span class="coral">בלי כאב ראש?</span></h2>
-        <p>הצטרפו למאות מנהלי צהרונים, חוגים וקייטנות שכבר עברו לגבייה דיגיטלית עם EduPay.</p>
-        <a href="mailto:amitai3386@gmail.com" class="btn-primary">דברו איתנו →</a>
-      </div>
-    </div>
-  </section>
+    <footer>
+      <div class="he">© SolEdu (SEDU). נבנה על Solana.</div>
+      <div class="en">© SolEdu (SEDU). Built on Solana.</div>
+    </footer>
+  </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-logo"><span>Edu</span><span class="coral">Pay</span></div>
-        <div class="footer-links">
-          <a href="#features">יתרונות</a>
-          <a href="#how">איך זה עובד</a>
-          <a href="#pricing">מחירים</a>
-          <a href="mailto:amitai3386@gmail.com">צרו קשר</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 EduPay. כל הזכויות שמורות. גבייה דיגיטלית חכמה לעולמות החינוך.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+  <script>
+    function setLang(lang) {
+      document.body.classList.toggle('en-mode', lang === 'en');
+      document.getElementById('btn-he').classList.toggle('active', lang === 'he');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang === 'he' ? 'he' : 'en';
+      document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+    }
+    // After launch, replace these:
+    // document.getElementById('mint').textContent = 'YOUR_MINT';
+    // document.getElementById('link-jupiter').innerHTML = '<a href="...">Open Jupiter</a>';
+  </script>
 </body>
 </html>
