@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SolEdu (SEDU) — Education payments on Solana</title>
-  <meta name="description" content="SolEdu (SEDU) — תשלומי חינוך וגיוס שקוף על Solana. Fast, low-fee rails for education payments and transparent fundraising." />
+  <meta name="description" content="SolEdu (SEDU) — Fast, low-fee rails for education payments and transparent fundraising on Solana." />
   <meta property="og:title" content="SolEdu (SEDU)" />
   <meta property="og:description" content="Education payments and transparent fundraising on Solana." />
   <meta property="og:image" content="banner.png" />
@@ -109,21 +109,6 @@
       display: grid; place-items: center; font-weight: 800;
       background: linear-gradient(135deg, var(--violet), var(--cyan)); color: #071018;
     }
-    .lang-toggle {
-      display: inline-flex; gap: 6px; background: rgba(255,255,255,.06);
-      border: 1px solid var(--border); border-radius: 999px; padding: 4px;
-    }
-    .lang-toggle button {
-      border: 0; background: transparent; color: var(--muted);
-      padding: 6px 12px; border-radius: 999px; cursor: pointer; font-weight: 700;
-    }
-    .lang-toggle button.active { background: rgba(124,92,255,.35); color: white; }
-    .en { display: none; }
-    body.en-mode .he { display: none; }
-    body.en-mode .en { display: block; }
-    body.en-mode .en-inline { display: inline; }
-    .en-inline { display: none; }
-    body.en-mode { direction: ltr; }
     footer {
       border-top: 1px solid var(--border); padding: 28px 0 40px; color: var(--muted); font-size: 14px;
     }
@@ -141,145 +126,98 @@
         <span>SolEdu <span class="gradient">SEDU</span></span>
       </div>
       <nav>
-        <a href="#about" class="he">מה זה</a>
-        <a href="#about" class="en en-inline">About</a>
-        <a href="#buy" class="he">איך קונים</a>
-        <a href="#buy" class="en en-inline">How to buy</a>
-        <a href="#links" class="he">קישורים</a>
-        <a href="#links" class="en en-inline">Links</a>
+        <a href="#about">About</a>
+        <a href="#buy">How to buy</a>
+        <a href="#links">Links</a>
       </nav>
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button type="button" id="btn-he" class="active" onclick="setLang('he')">עברית</button>
-        <button type="button" id="btn-en" onclick="setLang('en')">EN</button>
-      </div>
     </header>
 
     <section class="hero">
       <div>
-        <div class="pill he">על Solana · תשלומי חינוך</div>
-        <div class="pill en">On Solana · Education payments</div>
-        <h1 class="he">תשלומי חינוך וגיוס שקוף<br /><span class="gradient">במהירות של Solana</span></h1>
-        <h1 class="en">Education payments & transparent fundraising<br /><span class="gradient">at Solana speed</span></h1>
-        <p class="lead he">SEDU הוא טוקן תשתית לרישום, גבייה ותנועת כספים בעולם החינוך — עם עמלות נמוכות ושקיפות on-chain.</p>
-        <p class="lead en">SEDU is infrastructure for registration, collections, and education money flows — with low fees and on-chain transparency.</p>
+        <div class="pill">On Solana · Education payments</div>
+        <h1>Education payments &amp; transparent fundraising<br /><span class="gradient">at Solana speed</span></h1>
+        <p class="lead">SEDU is infrastructure for registration, collections, and education money flows — with low fees and on-chain transparency.</p>
         <div class="cta">
-          <a class="btn btn-primary he" href="#buy" id="cta-buy-he">קנייה (בקרוב)</a>
-          <a class="btn btn-primary en" href="#buy" id="cta-buy-en">Buy (soon)</a>
-          <a class="btn btn-ghost he" href="#links">צ׳ארט / קהילה</a>
-          <a class="btn btn-ghost en" href="#links">Chart / Community</a>
+          <a class="btn btn-primary" href="#buy" id="cta-buy">Buy (soon)</a>
+          <a class="btn btn-ghost" href="#links">Chart / Community</a>
         </div>
       </div>
       <div class="hero-card">
         <img class="banner" src="banner.png" alt="SolEdu banner" />
-        <div class="he"><strong>כתובת Mint הרשמית</strong></div>
-        <div class="en"><strong>Official Mint address</strong></div>
-        <p class="mint" id="mint">MINT_ADDRESS — יעודכן בהשקה / updates at launch</p>
+        <div><strong>Official Mint address</strong></div>
+        <p class="mint" id="mint">MINT_ADDRESS — updates at launch</p>
       </div>
     </section>
 
     <section id="about">
-      <h2 class="he">למה SEDU</h2>
-      <h2 class="en">Why SEDU</h2>
+      <h2>Why SEDU</h2>
       <div class="grid">
         <div class="card">
-          <h3 class="he">גבייה פשוטה יותר</h3>
-          <h3 class="en">Simpler collections</h3>
-          <p class="he">מסלול תשלום מהיר למוסדות, הורים ומפעילים — בלי חיכוך מיותר.</p>
-          <p class="en">A fast payment path for institutions, families, and operators — less friction.</p>
+          <h3>Simpler collections</h3>
+          <p>A fast payment path for institutions, families, and operators — less friction.</p>
         </div>
         <div class="card">
-          <h3 class="he">שקיפות בגיוס</h3>
-          <h3 class="en">Transparent fundraising</h3>
-          <p class="he">תנועות כסף נראות על הרשת. פחות “איפה הכסף”, יותר מעקב ברור.</p>
-          <p class="en">Money movement is visible on-chain. Less guesswork, clearer tracking.</p>
+          <h3>Transparent fundraising</h3>
+          <p>Money movement is visible on-chain. Less guesswork, clearer tracking.</p>
         </div>
         <div class="card">
-          <h3 class="he">בינלאומי, על Solana</h3>
-          <h3 class="en">Global, on Solana</h3>
-          <p class="he">עמלות נמוכות ואישורים מהירים — מתאים למוצר חוצה גבולות.</p>
-          <p class="en">Low fees and fast confirmation — built for a cross-border product.</p>
+          <h3>Global, on Solana</h3>
+          <p>Low fees and fast confirmation — built for a cross-border product.</p>
         </div>
       </div>
     </section>
 
     <section id="buy">
-      <h2 class="he">איך קונים</h2>
-      <h2 class="en">How to buy</h2>
+      <h2>How to buy</h2>
       <div class="steps">
         <div class="step">
           <div>
-            <strong class="he">פתחו ארנק</strong>
-            <strong class="en">Open a wallet</strong>
-            <p class="he" style="margin:.35rem 0 0;color:var(--muted)">Phantom או Solflare.</p>
-            <p class="en" style="margin:.35rem 0 0;color:var(--muted)">Phantom or Solflare.</p>
+            <strong>Open a wallet</strong>
+            <p style="margin:.35rem 0 0;color:var(--muted)">Phantom or Solflare.</p>
           </div>
         </div>
         <div class="step">
           <div>
-            <strong class="he">העבירו קצת SOL</strong>
-            <strong class="en">Add a little SOL</strong>
-            <p class="he" style="margin:.35rem 0 0;color:var(--muted)">לעמלות רשת ולקנייה.</p>
-            <p class="en" style="margin:.35rem 0 0;color:var(--muted)">For network fees and the swap.</p>
+            <strong>Add a little SOL</strong>
+            <p style="margin:.35rem 0 0;color:var(--muted)">For network fees and the swap.</p>
           </div>
         </div>
         <div class="step">
           <div>
-            <strong class="he">החליפו ב־Jupiter</strong>
-            <strong class="en">Swap on Jupiter</strong>
-            <p class="he" style="margin:.35rem 0 0;color:var(--muted)">הדביקו את כתובת ה־mint הרשמית בלבד.</p>
-            <p class="en" style="margin:.35rem 0 0;color:var(--muted)">Paste only the official mint address.</p>
+            <strong>Swap on Jupiter</strong>
+            <p style="margin:.35rem 0 0;color:var(--muted)">Paste only the official mint address.</p>
           </div>
         </div>
       </div>
-      <p style="margin-top:16px" class="he">קישור קנייה יתווסף כאן בהשקה.</p>
-      <p style="margin-top:16px" class="en">Buy link will be added here at launch.</p>
+      <p style="margin-top:16px">Buy link will be added here at launch.</p>
     </section>
 
     <section id="links">
-      <h2 class="he">קישורים רשמיים</h2>
-      <h2 class="en">Official links</h2>
+      <h2>Official links</h2>
       <div class="grid">
         <div class="card">
           <h3>Jupiter</h3>
-          <p id="link-jupiter">בקרוב / Coming soon</p>
+          <p id="link-jupiter">Coming soon</p>
         </div>
         <div class="card">
           <h3>DexScreener</h3>
-          <p id="link-dex">בקרוב / Coming soon</p>
+          <p id="link-dex">Coming soon</p>
         </div>
         <div class="card">
           <h3>Explorer</h3>
-          <p id="link-explorer">בקרוב / Coming soon</p>
+          <p id="link-explorer">Coming soon</p>
         </div>
       </div>
       <div style="height:16px"></div>
-      <div class="warn he">
-        <strong>בטיחות:</strong> לעולם לא נבקש seed או מפתח פרטי. סמכו רק על ה־mint בעמוד הזה.
-        זהו כלי תשתית/תשלומים — לא ייעוץ השקעות ואין הבטחת תשואה.
-      </div>
-      <div class="warn en">
+      <div class="warn">
         <strong>Safety:</strong> We will never ask for your seed phrase. Trust only the mint on this page.
         This is payment/infrastructure tooling — not investment advice and no return guarantee.
       </div>
     </section>
 
     <footer>
-      <div class="he">© SolEdu (SEDU). נבנה על Solana.</div>
-      <div class="en">© SolEdu (SEDU). Built on Solana.</div>
+      <div>© SolEdu (SEDU). Built on Solana.</div>
     </footer>
   </div>
-
-  <script>
-    function setLang(lang) {
-      document.body.classList.toggle('en-mode', lang === 'en');
-      document.getElementById('btn-he').classList.toggle('active', lang === 'he');
-      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-      document.documentElement.lang = lang === 'he' ? 'he' : 'en';
-      document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
-    }
-    // After launch, replace these:
-    // document.getElementById('mint').textContent = 'YOUR_MINT';
-    // document.getElementById('link-jupiter').innerHTML = '<a href="...">Open Jupiter</a>';
-  </script>
 </body>
 </html>
