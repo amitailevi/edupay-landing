@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SolEdu (SEDU) — Launch App</title>
+  <meta name="description" content="SolEdu (SEDU) Launch App. Pre-launch. Awaiting the official mint. Not investment advice." />
+  <meta property="og:title" content="SolEdu (SEDU) — Launch App" />
+  <meta property="og:description" content="Pre-launch token dashboard. Solscan, Jupiter, and DexScreener open when the official mint is published." />
+  <meta property="og:image" content="banner.png" />
+  <link rel="icon" href="logo.png" />
+  <style>
+    :root {
+      --bg: #070b1a;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: #f4f6ff;
+      --muted: #a9b1d6;
+      --violet: #7c5cff;
+      --cyan: #14f195;
+      --purple: #9945ff;
+      --down: #ff6b8a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(800px 420px at 80% -10%, rgba(124,92,255,.4), transparent 55%),
+                  radial-gradient(700px 380px at 0% 10%, rgba(20,241,149,.12), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: var(--cyan); text-decoration: none; }
+    .app { width: min(480px, 100%); margin: 0 auto; padding: 0 16px 40px; }
+    .ticker {
+      width: min(480px, calc(100% - 32px));
+      margin: 12px auto 0;
+      background: rgba(7,11,26,.72);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .ticker-label { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+    .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--cyan); }
+    .quotes { display: grid; gap: 8px; }
+    .quote {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 8px 10px;
+    }
+    .sym { color: var(--muted); font-size: 13px; }
+    .sym b { color: var(--text); }
+    .px { font-weight: 800; font-variant-numeric: tabular-nums; }
+    .chg { font-size: 13px; font-weight: 700; }
+    .chg.up { color: var(--cyan); }
+    .chg.down { color: var(--down); }
+    .chg.flat { color: var(--muted); }
+    .ticker-note { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 12px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+    .brand img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; }
+    .back { color: var(--muted); font-size: 14px; font-weight: 700; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 800; letter-spacing: .02em;
+      padding: 5px 10px; border-radius: 999px;
+      background: rgba(255,180,80,.12); color: #ffd9a8; border: 1px solid rgba(255,180,80,.4);
+    }
+    h1 { font-size: 1.85rem; line-height: 1.15; margin: 12px 0 8px; }
+    .gradient {
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lead { color: var(--muted); margin: 0 0 16px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 18px; padding: 16px; margin: 0 0 14px;
+    }
+    .card h2 { margin: 0 0 12px; font-size: 1.05rem; }
+    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .fact span { display: block; color: var(--muted); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+    .fact strong { display: block; margin-top: 2px; }
+    .actions { display: grid; gap: 8px; }
+    .action {
+      display: flex; justify-content: space-between; align-items: center; gap: 8px;
+      width: 100%; text-align: left; font: inherit; color: var(--text);
+      background: rgba(124,92,255,.16); border: 1px solid rgba(124,92,255,.45);
+      border-radius: 14px; padding: 14px; text-decoration: none; font-weight: 800;
+    }
+    .action .state { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .action.is-disabled { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
+    .mint {
+      margin-top: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px; color: var(--muted); background: rgba(0,0,0,.35);
+      border-radius: 10px; padding: 10px; word-break: break-all;
+    }
+    .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .steps li {
+      display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start;
+      color: var(--muted); font-size: 0.95rem;
+    }
+    .n {
+      width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center;
+      font-weight: 800; color: #071018;
+      background: linear-gradient(135deg, var(--violet), var(--cyan));
+    }
+    .steps strong { color: var(--text); }
+    .rail { margin: 0 0 10px; }
+    .rail h3 { margin: 0 0 4px; font-size: 0.98rem; }
+    .rail p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    .warn {
+      border: 1px solid rgba(255,180,80,.35); background: rgba(255,180,80,.08);
+      color: #ffd9a8; border-radius: 14px; padding: 14px; font-size: 0.92rem;
+    }
+    footer { color: var(--muted); font-size: 13px; padding-top: 8px; }
+    @media (min-width: 720px) {
+      .app, .ticker { width: min(720px, calc(100% - 48px)); }
+      .quotes { grid-template-columns: 1fr 1fr 1fr; }
+      .facts { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="ticker">
+    <div class="ticker-label">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Live market · powered by public exchange data</span>
+      <span id="market-updated"></span>
+    </div>
+    <div class="quotes" id="market" aria-live="polite">
+      <div class="quote"><span class="sym">Bitcoin <b>BTC</b></span><span><span class="px" id="px-btc">…</span> <span class="chg" id="chg-btc"></span></span></div>
+      <div class="quote"><span class="sym">Solana <b>SOL</b></span><span><span class="px" id="px-sol">…</span> <span class="chg" id="chg-sol"></span></span></div>
+      <div class="quote"><span class="sym">SolEdu <b>SEDU</b></span><span><span class="px">N/A</span> <span class="chg flat">Pre-launch</span></span></div>
+    </div>
+    <p class="ticker-note" id="market-status">Loading public prices… SEDU has no price until the official mint is published.</p>
+  </div>
+
+  <main class="app">
+    <header>
+      <div class="brand">
+        <img src="logo.png" alt="SEDU logo" />
+        <span>SolEdu</span>
+      </div>
+      <a class="back" href="./">Landing</a>
+    </header>
+
+    <section>
+      <div class="badge">Pre-launch / Awaiting mint</div>
+      <h1>SolEdu (SEDU)<br /><span class="gradient">Launch App</span></h1>
+      <p class="lead">A token launch dashboard. Swap and chart links stay off until the official mint is published on this site.</p>
+    </section>
+
+    <section class="card" aria-labelledby="token-heading">
+      <h2 id="token-heading">Token</h2>
+      <div class="facts">
+        <div class="fact"><span>Name</span><strong>SolEdu</strong></div>
+        <div class="fact"><span>Symbol</span><strong>SEDU</strong></div>
+        <div class="fact"><span>Network</span><strong>Solana</strong></div>
+        <div class="fact"><span>Decimals</span><strong>9</strong></div>
+        <div class="fact"><span>Supply</span><strong>1,000,000,000</strong></div>
+        <div class="fact"><span>Category</span><strong>Utility</strong></div>
+      </div>
+      <p class="mint" id="mint">Mint address publishes at launch</p>
+    </section>
+
+    <section class="card" aria-labelledby="actions-heading">
+      <h2 id="actions-heading">Actions</h2>
+      <div class="actions">
+        <a class="action is-disabled" id="link-solscan" aria-disabled="true"><span>Open Solscan</span><span class="state">Launching soon</span></a>
+        <a class="action is-disabled" id="link-jupiter" aria-disabled="true"><span>Swap on Jupiter</span><span class="state">Launching soon</span></a>
+        <a class="action is-disabled" id="link-dex" aria-disabled="true"><span>Chart on DexScreener</span><span class="state">Launching soon</span></a>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="buy-heading">
+      <h2 id="buy-heading">How to buy (after launch)</h2>
+      <ol class="steps">
+        <li><span class="n">1</span><span><strong>Open a wallet.</strong> Phantom or Solflare.</span></li>
+        <li><span class="n">2</span><span><strong>Add a little SOL</strong> for network fees.</span></li>
+        <li><span class="n">3</span><span><strong>Swap on Jupiter</strong> using only the official mint.</span></li>
+        <li><span class="n">4</span><span><strong>Verify the mint</strong> matches the address on this site.</span></li>
+      </ol>
+    </section>
+
+    <section class="card" aria-labelledby="rails-heading">
+      <h2 id="rails-heading">Two rails</h2>
+      <div class="rail">
+        <h3>SEDU — community and fundraising</h3>
+        <p>The utility token aligns supporters with the product. It is not where schools should hold operating money.</p>
+      </div>
+      <div class="rail">
+        <h3>USD-pegged — tuition and fees</h3>
+        <p>Institutional balances settle on a dollar-stable rail such as Solana USDC, so schools do not take volatility on money meant for operations.</p>
+      </div>
+    </section>
+
+    <section class="warn">
+      <strong>Safety.</strong> Never share a seed phrase. Trust only the official mint published on this site. Messages that ask you to send SOL are scams. Not investment advice, and no guaranteed returns.
+    </section>
+
+    <footer>
+      <p><a href="./">Back to the SolEdu landing</a></p>
+      <p>© SolEdu (SEDU). Pre-launch.</p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const MINT = "";
+      var BINANCE = "https://data-api.binance.vision/api/v3/ticker/24hr?symbol=";
+      var GECKO = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,solana&vs_currencies=usd&include_24hr_change=true";
+      var hasQuote = false;
+
+      function num(value) {
+        var n = Number(value);
+        return Number.isFinite(n) ? n : null;
+      }
+      function formatUsd(value) {
+        var digits = Math.abs(value) >= 1000 ? 0 : 2;
+        return value.toLocaleString("en-US", {
+          style: "currency", currency: "USD",
+          minimumFractionDigits: digits, maximumFractionDigits: digits
+        });
+      }
+      function formatChange(value) {
+        return (value > 0 ? "+" : "") + value.toFixed(2) + "%";
+      }
+      function paintChange(el, value) {
+        el.textContent = formatChange(value);
+        el.className = "chg " + (value > 0 ? "up" : value < 0 ? "down" : "flat");
+      }
+      function render(quote, source) {
+        document.getElementById("px-btc").textContent = formatUsd(quote.btc.price);
+        document.getElementById("px-sol").textContent = formatUsd(quote.sol.price);
+        paintChange(document.getElementById("chg-btc"), quote.btc.change);
+        paintChange(document.getElementById("chg-sol"), quote.sol.change);
+        document.getElementById("market-updated").textContent = "· updated " + new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", second: "2-digit" });
+        document.getElementById("market-status").textContent = "Live " + source + " quotes for BTC and SOL. SEDU price is N/A until the official mint launches.";
+        hasQuote = true;
+      }
+      function unavailable() {
+        if (hasQuote) {
+          document.getElementById("market-status").textContent = "Refresh failed. Showing the last public quote. SEDU price is still N/A.";
+          return;
+        }
+        document.getElementById("px-btc").textContent = "—";
+        document.getElementById("px-sol").textContent = "—";
+        document.getElementById("chg-btc").textContent = "";
+        document.getElementById("chg-sol").textContent = "";
+        document.getElementById("market-status").textContent = "Market data unavailable. SEDU price is N/A until the official mint launches.";
+      }
+      function withTimeout(url) {
+        var controller = new AbortController();
+        var timer = setTimeout(function () { controller.abort(); }, 8000);
+        return fetch(url, { signal: controller.signal, cache: "no-store" }).finally(function () { clearTimeout(timer); });
+      }
+      function loadBinance() {
+        return Promise.all([
+          withTimeout(BINANCE + "BTCUSDT").then(function (res) { if (!res.ok) throw new Error("btc"); return res.json(); }),
+          withTimeout(BINANCE + "SOLUSDT").then(function (res) { if (!res.ok) throw new Error("sol"); return res.json(); })
+        ]).then(function (rows) {
+          var btcPrice = num(rows[0].lastPrice), solPrice = num(rows[1].lastPrice);
+          var btcChange = num(rows[0].priceChangePercent), solChange = num(rows[1].priceChangePercent);
+          if (btcPrice === null || solPrice === null || btcChange === null || solChange === null) throw new Error("bad");
+          return { btc: { price: btcPrice, change: btcChange }, sol: { price: solPrice, change: solChange } };
+        });
+      }
+      function loadGecko() {
+        return withTimeout(GECKO).then(function (res) { if (!res.ok) throw new Error("gecko"); return res.json(); }).then(function (data) {
+          var btcPrice = num(data.bitcoin && data.bitcoin.usd);
+          var solPrice = num(data.solana && data.solana.usd);
+          var btcChange = num(data.bitcoin && data.bitcoin.usd_24h_change);
+          var solChange = num(data.solana && data.solana.usd_24h_change);
+          if (btcPrice === null || solPrice === null || btcChange === null || solChange === null) throw new Error("bad");
+          return { btc: { price: btcPrice, change: btcChange }, sol: { price: solPrice, change: solChange } };
+        });
+      }
+      function refresh() {
+        loadBinance().then(function (q) { render(q, "Binance"); }).catch(function () {
+          return loadGecko().then(function (q) { render(q, "CoinGecko"); });
+        }).catch(unavailable);
+      }
+      function liveMint(value) {
+        var mint = String(value || "").trim();
+        return /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(mint) ? mint : "";
+      }
+      function setAction(id, href, state) {
+        var el = document.getElementById(id);
+        el.querySelector(".state").textContent = state;
+        if (href) {
+          el.href = href;
+          el.target = "_blank";
+          el.rel = "noopener noreferrer";
+          el.classList.remove("is-disabled");
+          el.removeAttribute("aria-disabled");
+        } else {
+          el.removeAttribute("href");
+          el.classList.add("is-disabled");
+          el.setAttribute("aria-disabled", "true");
+        }
+      }
+      function applyMint() {
+        var mint = liveMint(MINT);
+        document.getElementById("mint").textContent = mint || "Mint address publishes at launch";
+        if (mint) {
+          setAction("link-solscan", "https://solscan.io/token/" + mint, "Open");
+          setAction("link-jupiter", "https://jup.ag/swap/SOL-" + mint, "Open");
+          setAction("link-dex", "https://dexscreener.com/solana/" + mint, "Open");
+        } else {
+          setAction("link-solscan", "", "Launching soon");
+          setAction("link-jupiter", "", "Launching soon");
+          setAction("link-dex", "", "Launching soon");
+        }
+      }
+      applyMint();
+      refresh();
+      setInterval(refresh, 45000);
+    })();
+  </script>
+</body>
+</html>
