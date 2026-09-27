@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SolEdu (SEDU) — Product demo</title>
+  <meta name="description" content="Illustrative SolEdu product demo. Sample community reviews and a changelog. Not live holders, TVL, or a tradable mint." />
+  <link rel="icon" href="logo.png" />
+  <style>
+    :root {
+      --bg: #070b1a;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: #f4f6ff;
+      --muted: #a9b1d6;
+      --violet: #7c5cff;
+      --cyan: #14f195;
+      --purple: #9945ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1000px 480px at 90% -10%, rgba(124,92,255,.35), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+    .wrap { width: min(980px, 92%); margin: 0 auto; }
+    .site-head {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(7,11,26,.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--text); }
+    .brand:hover { text-decoration: none; }
+    .brand img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; }
+    nav { display: flex; gap: 14px; overflow-x: auto; font-size: 14px; font-weight: 700; }
+    nav a { color: var(--muted); white-space: nowrap; }
+    .banner {
+      margin: 18px 0; border: 1px solid rgba(255,180,80,.4);
+      background: rgba(255,180,80,.1); color: #ffd9a8;
+      border-radius: 16px; padding: 14px 16px;
+    }
+    .banner strong { color: #fff4e5; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.15; margin: 0 0 8px; }
+    .sub { color: var(--muted); margin: 0 0 18px; max-width: 42rem; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 22px; }
+    .stat, .card, article, .feed-item {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px;
+    }
+    .stat span, .meta { display: block; color: var(--muted); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+    .stat strong { display: block; font-size: 1.6rem; margin-top: 4px; }
+    .badge {
+      display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .06em;
+      border-radius: 999px; padding: 3px 8px; margin-bottom: 8px;
+      background: rgba(124,92,255,.25); color: white; border: 1px solid rgba(124,92,255,.5);
+    }
+    h2 { margin: 28px 0 10px; font-size: 1.3rem; }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .filters button, .helpful, .btn {
+      border: 1px solid var(--border); background: transparent; color: var(--text);
+      border-radius: 999px; padding: 8px 12px; font: inherit; font-weight: 700; cursor: pointer;
+    }
+    .filters button[aria-pressed="true"] { background: rgba(124,92,255,.35); border-color: transparent; }
+    .reviews { display: grid; gap: 10px; }
+    article h3 { margin: 0 0 4px; font-size: 1rem; }
+    article p { margin: 8px 0; color: var(--muted); }
+    .helpful[aria-pressed="true"] { color: #071018; background: var(--cyan); border-color: transparent; }
+    .layout { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 16px; align-items: start; }
+    .feed-item { margin-bottom: 8px; }
+    .feed-item p { margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; }
+    .log { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+    .log li { border-left: 3px solid var(--violet); padding: 2px 0 2px 12px; }
+    .log b { display: block; }
+    .log span { color: var(--muted); }
+    form { display: grid; gap: 8px; }
+    input, select {
+      width: 100%; border: 1px solid var(--border); background: rgba(0,0,0,.28);
+      color: var(--text); border-radius: 12px; padding: 10px 12px; font: inherit;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--violet), var(--purple));
+      border: 0; color: white; border-radius: 12px; padding: 12px; cursor: pointer; font-weight: 800;
+    }
+    .thanks { color: var(--cyan); }
+    footer { color: var(--muted); font-size: 13px; padding: 28px 0 40px; }
+    @media (max-width: 800px) {
+      .stats, .layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-head">
+    <div class="wrap">
+      <header>
+        <a class="brand" href="./"><img src="logo.png" alt="SEDU logo" /> SolEdu</a>
+        <nav aria-label="Primary">
+          <a href="launch.html">Launch App</a>
+          <a href="updates.html">Updates</a>
+          <a href="./">Site</a>
+        </nav>
+      </header>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="banner">
+      <strong>Product demo · illustrative community.</strong>
+      The people, reviews, activity, and numbers on this page are a design walkthrough. They are not live users, on-chain holders, funds raised, or social follower counts. SEDU is not minted and is not tradeable.
+    </div>
+    <h1>Community pulse</h1>
+    <p class="sub">A sample of ten archetypes walking the site, then the changes shipped from that pass. Use it to see how the product should feel before a real mint exists.</p>
+
+    <div class="stats" aria-label="Demo statistics">
+      <div class="stat"><span class="badge">DEMO</span><span>Sample visitors</span><strong>1,284</strong></div>
+      <div class="stat"><span class="badge">DEMO</span><span>Sample waitlist</span><strong>86</strong></div>
+      <div class="stat"><span class="badge">DEMO</span><span>Sample sessions</span><strong>3,410</strong></div>
+    </div>
+    <p class="sub">These three figures are illustrative only. They are not analytics, token holders, or money raised.</p>
+
+    <div class="layout">
+      <section>
+        <h2>Reviews</h2>
+        <div class="filters" role="group" aria-label="Filter reviews">
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="school" aria-pressed="false">Schools</button>
+          <button type="button" data-filter="parent" aria-pressed="false">Parents</button>
+          <button type="button" data-filter="crypto" aria-pressed="false">Crypto</button>
+          <button type="button" data-filter="builder" aria-pressed="false">Builders</button>
+        </div>
+        <div class="reviews" id="reviews"></div>
+      </section>
+      <aside>
+        <h2>Activity</h2>
+        <div class="feed-item"><span class="badge">DEMO</span><p>Maya asked for a sentence that says school budgets do not sit in SEDU. The two-rails block now leads with that.</p></div>
+        <div class="feed-item"><span class="badge">DEMO</span><p>Chris could not find Launch App under a wrapping menu. Navigation is now a sticky row.</p></div>
+        <div class="feed-item"><span class="badge">DEMO</span><p>Hannah’s phone opened on three stacked price cards. The market strip scrolls in one row.</p></div>
+        <div class="feed-item"><span class="badge">DEMO</span><p>Lina treated faded buttons as broken links. Trade actions stay visibly “Launching soon.”</p></div>
+        <h2>Shipped from this pass</h2>
+        <ol class="log">
+          <li><b>v1.5 · Demo pulse</b><span>This page, labeled illustrative, with filters and local helpful votes.</span></li>
+          <li><b>v1.4 · Find the product</b><span>Sticky navigation and a compact mobile market strip.</span></li>
+          <li><b>v1.4 · Launch dashboard</b><span>Checklist plus token and action panels, not a second brochure.</span></li>
+          <li><b>v1.3 · Follow the site</b><span>Updates page and the email button. No invented social accounts.</span></li>
+          <li><b>v1.2 · Honest launch state</b><span>Mint stays empty. Solscan, Jupiter, and DexScreener stay off.</span></li>
+          <li><b>v1.2 · Two rails</b><span>SEDU for community. A USD-pegged rail for tuition and fees.</span></li>
+        </ol>
+        <h2>Demo waitlist</h2>
+        <form id="waitlist">
+          <p class="sub">Demo only. Submitting stores a thank-you on this device. Nothing is sent to a server.</p>
+          <input name="name" required placeholder="Name" autocomplete="name" />
+          <input name="email" type="email" required placeholder="Email" autocomplete="email" />
+          <select name="role" aria-label="Role">
+            <option>School ops</option>
+            <option>Parent</option>
+            <option>Trader</option>
+            <option>Builder</option>
+          </select>
+          <button class="btn-primary" type="submit">Join the demo waitlist</button>
+          <p class="thanks" id="thanks" hidden>Saved for this demo on your device. No account was created and no email was sent.</p>
+        </form>
+      </aside>
+    </div>
+    <footer>© SolEdu (SEDU). Product demo. Pre-launch. Not investment advice.</footer>
+  </main>
+
+  <script>
+    (function () {
+      var reviews = [
+        { id: "maya", role: "school", name: "Maya Chen", title: "School operations director", text: "I needed one sentence that tuition does not go into a volatile token. The two-rails section does that before anyone asks." },
+        { id: "andre", role: "parent", name: "Andre Brooks", title: "Parent", text: "I still want a payment status later. For now the page says billing is not live, which is clearer than a fake portal." },
+        { id: "lina", role: "crypto", name: "Lina Okonkwo", title: "Solana trader", text: "Do not show a buy button with no mint. Disabled Solscan, Jupiter, and chart slots with “Launching soon” is the honest state." },
+        { id: "jonah", role: "builder", name: "Jonah Patel", title: "Edtech founder", text: "Lead with the rails. Supporters can hold the community token. Schools should settle fees in a dollar-pegged asset." },
+        { id: "sofia", role: "school", name: "Sofia Alvarez", title: "Multi-site operator", text: "The institutions block matches how we actually work: registration, collections, and a dashboard across branches." },
+        { id: "chris", role: "builder", name: "Chris Nguyen", title: "First-time visitor", text: "The first screen was all navigation. A sticky bar with Launch App as the obvious action fixed the scan." },
+        { id: "priya", role: "school", name: "Priya Shah", title: "School admin", text: "Email updates are enough until there is a mint. I do not want a social feed pretending to be official." },
+        { id: "eli", role: "crypto", name: "Eli Markov", title: "Community reader", text: "Safety is visible: no seed phrase, and the mint on this site is the only one that will count." },
+        { id: "hannah", role: "parent", name: "Hannah Berg", title: "Mobile visitor", text: "Bitcoin and Solana prices were taller than the headline. One scrolling market row leaves room for the offer." },
+        { id: "omar", role: "school", name: "Omar Haddad", title: "Academic program lead", text: "International programs need the same story: fast Solana rails, stable value for fees, SEDU for the community raise." }
+      ];
+
+      var list = document.getElementById("reviews");
+      var storeKey = "sedu-demo-helpful";
+      function readStore() {
+        try { return JSON.parse(localStorage.getItem(storeKey)) || {}; }
+        catch (err) { return {}; }
+      }
+      function writeStore(data) {
+        localStorage.setItem(storeKey, JSON.stringify(data));
+      }
+      var helpful = readStore();
+
+      function paint(filter) {
+        list.innerHTML = "";
+        reviews.filter(function (item) { return filter === "all" || item.role === filter; }).forEach(function (item) {
+          var card = document.createElement("article");
+          card.innerHTML = "<span class=\"badge\">DEMO</span><h3></h3><div class=\"meta\"></div><p></p><button type=\"button\" class=\"helpful\"></button>";
+          card.querySelector("h3").textContent = item.name;
+          card.querySelector(".meta").textContent = item.title;
+          card.querySelector("p").textContent = item.text;
+          var button = card.querySelector(".helpful");
+          var on = !!helpful[item.id];
+          button.setAttribute("aria-pressed", on ? "true" : "false");
+          button.textContent = on ? "Helpful · saved on this device" : "Mark helpful";
+          button.addEventListener("click", function () {
+            helpful[item.id] = !helpful[item.id];
+            writeStore(helpful);
+            paint(filter);
+          });
+          list.appendChild(card);
+        });
+      }
+
+      var current = "all";
+      document.querySelectorAll(".filters button").forEach(function (button) {
+        button.addEventListener("click", function () {
+          current = button.getAttribute("data-filter");
+          document.querySelectorAll(".filters button").forEach(function (other) {
+            other.setAttribute("aria-pressed", other === button ? "true" : "false");
+          });
+          paint(current);
+        });
+      });
+      paint(current);
+
+      document.getElementById("waitlist").addEventListener("submit", function (event) {
+        event.preventDefault();
+        document.getElementById("thanks").hidden = false;
+        event.target.reset();
+      });
+    })();
+  </script>
+</body>
+</html>

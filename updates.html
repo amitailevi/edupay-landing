@@ -28,7 +28,15 @@
     }
     a { color: var(--cyan); }
     .wrap { width: min(720px, 92%); margin: 0 auto; padding: 28px 0 48px; }
-    header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 22px; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      margin: 0 0 22px; padding: 12px 0;
+      background: rgba(7,11,26,.94); backdrop-filter: blur(12px);
+    }
+    nav { overflow-x: auto; }
+    nav a { white-space: nowrap; }
+    a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--text); text-decoration: none; }
     .brand img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; }
     nav { display: flex; gap: 14px; font-size: 14px; }
@@ -58,6 +66,7 @@
       <a class="brand" href="./"><img src="logo.png" alt="SEDU logo" /> SolEdu</a>
       <nav>
         <a href="launch.html">Launch App</a>
+        <a href="demo.html">Demo</a>
         <a href="./">Site</a>
       </nav>
     </header>

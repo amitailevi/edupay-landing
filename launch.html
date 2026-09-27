@@ -32,15 +32,15 @@
       line-height: 1.5;
     }
     a { color: var(--cyan); text-decoration: none; }
-    .app { width: min(480px, 100%); margin: 0 auto; padding: 0 16px 40px; }
-    .ticker {
-      width: min(480px, calc(100% - 32px));
-      margin: 12px auto 0;
-      background: rgba(7,11,26,.72);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 12px;
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+    .topbar {
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(7,11,26,.94); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border); padding: 10px 0 12px;
     }
+    .shell { width: min(980px, calc(100% - 32px)); margin: 0 auto; }
+    .app { width: min(980px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 48px; }
+    .ticker { background: transparent; border: 0; border-radius: 0; padding: 0; width: auto; margin: 0; }
     .ticker-label { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; color: var(--muted); font-size: 12px; margin-bottom: 8px; }
     .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--cyan); }
     .quotes { display: grid; gap: 8px; }
@@ -57,7 +57,7 @@
     .chg.flat { color: var(--muted); }
     .ticker-note { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
     header { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 12px; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--text); text-decoration: none; }
     .brand img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; }
     .back { color: var(--muted); font-size: 14px; font-weight: 700; }
     .badge {
@@ -88,7 +88,22 @@
       border-radius: 14px; padding: 14px; text-decoration: none; font-weight: 800;
     }
     .action .state { color: var(--muted); font-size: 12px; font-weight: 700; }
-    .action.is-disabled { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
+    .action.is-disabled {
+      opacity: 1; cursor: not-allowed; pointer-events: none;
+      border-style: dashed; background: rgba(255,255,255,0.03);
+    }
+    .dash { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 14px; align-items: start; }
+    .status-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .status-list li {
+      display: flex; justify-content: space-between; gap: 12px;
+      border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px;
+    }
+    .status-list b { font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+    .status-list .done b { color: var(--cyan); }
+    .status-list .wait b { color: #ffd9a8; }
+    .app-nav { display: flex; gap: 12px; overflow-x: auto; font-size: 13px; font-weight: 700; }
+    .app-nav a { color: var(--muted); white-space: nowrap; }
+    .head-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
     .mint {
       margin-top: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 12px; color: var(--muted); background: rgba(0,0,0,.35);
@@ -126,35 +141,44 @@
     }
     .share-status { color: var(--muted); font-size: 13px; }
     @media (min-width: 720px) {
-      .app, .ticker { width: min(720px, calc(100% - 48px)); }
       .quotes { grid-template-columns: 1fr 1fr 1fr; }
       .facts { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 800px) {
+      .dash { grid-template-columns: 1fr; }
+      .quotes { display: flex; overflow-x: auto; gap: 8px; }
+      .quote { flex: 0 0 200px; }
     }
   </style>
 </head>
 <body>
-  <div class="ticker">
-    <div class="ticker-label">
-      <span class="dot" aria-hidden="true"></span>
-      <span>Live market · powered by public exchange data</span>
-      <span id="market-updated"></span>
+  <div class="topbar">
+    <div class="shell">
+      <div class="head-row">
+        <a class="brand" href="./"><img src="logo.png" alt="SEDU logo" /><span>Launch App</span></a>
+        <nav class="app-nav" aria-label="Launch">
+          <a href="./">Site</a>
+          <a href="demo.html">Demo</a>
+          <a href="updates.html">Updates</a>
+        </nav>
+      </div>
+      <div class="ticker">
+        <div class="ticker-label">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Live market · powered by public exchange data</span>
+          <span id="market-updated"></span>
+        </div>
+        <div class="quotes" id="market" aria-live="polite">
+          <div class="quote"><span class="sym">Bitcoin <b>BTC</b></span><span><span class="px" id="px-btc">…</span> <span class="chg" id="chg-btc"></span></span></div>
+          <div class="quote"><span class="sym">Solana <b>SOL</b></span><span><span class="px" id="px-sol">…</span> <span class="chg" id="chg-sol"></span></span></div>
+          <div class="quote"><span class="sym">SolEdu <b>SEDU</b></span><span><span class="px">N/A</span> <span class="chg flat">Pre-launch</span></span></div>
+        </div>
+        <p class="ticker-note" id="market-status">Loading public prices… SEDU has no price until the official mint is published.</p>
+      </div>
     </div>
-    <div class="quotes" id="market" aria-live="polite">
-      <div class="quote"><span class="sym">Bitcoin <b>BTC</b></span><span><span class="px" id="px-btc">…</span> <span class="chg" id="chg-btc"></span></span></div>
-      <div class="quote"><span class="sym">Solana <b>SOL</b></span><span><span class="px" id="px-sol">…</span> <span class="chg" id="chg-sol"></span></span></div>
-      <div class="quote"><span class="sym">SolEdu <b>SEDU</b></span><span><span class="px">N/A</span> <span class="chg flat">Pre-launch</span></span></div>
-    </div>
-    <p class="ticker-note" id="market-status">Loading public prices… SEDU has no price until the official mint is published.</p>
   </div>
 
   <main class="app">
-    <header>
-      <div class="brand">
-        <img src="logo.png" alt="SEDU logo" />
-        <span>SolEdu</span>
-      </div>
-      <a class="back" href="./">Landing</a>
-    </header>
 
     <section>
       <div class="badge">Pre-launch / Awaiting mint</div>
@@ -162,6 +186,7 @@
       <p class="lead">A token launch dashboard. Swap and chart links stay off until the official mint is published on this site.</p>
     </section>
 
+    <div class="dash">
     <section class="card" aria-labelledby="token-heading">
       <h2 id="token-heading">Token</h2>
       <div class="facts">
@@ -182,6 +207,17 @@
         <a class="action is-disabled" id="link-jupiter" aria-disabled="true"><span>Swap on Jupiter</span><span class="state">Launching soon</span></a>
         <a class="action is-disabled" id="link-dex" aria-disabled="true"><span>Chart on DexScreener</span><span class="state">Launching soon</span></a>
       </div>
+      <p class="ticker-note">These actions stay off on purpose. SEDU is not tradeable until the official mint is published here.</p>
+    </section>
+    </div>
+
+    <section class="card" aria-labelledby="status-heading">
+      <h2 id="status-heading">Launch checklist</h2>
+      <ul class="status-list">
+        <li class="done"><span>Site, updates, and this dashboard</span><b>Live</b></li>
+        <li class="wait"><span>Official mint address</span><b>Waiting</b></li>
+        <li class="wait"><span>Solscan, Jupiter, and DexScreener</span><b>Waiting</b></li>
+      </ul>
     </section>
 
     <section class="card" aria-labelledby="buy-heading">
@@ -219,6 +255,7 @@
       </div>
       <div class="share-row">
         <a href="updates.html">Official updates</a>
+        <a href="demo.html">Product demo</a>
         <button type="button" class="share-btn" id="share-launch">Share</button>
         <span class="share-status" id="share-status" role="status"></span>
       </div>

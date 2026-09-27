@@ -33,6 +33,10 @@
     }
     a { color: var(--cyan); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--cyan); outline-offset: 3px;
+    }
+    .btn:hover, .link-slot:hover { text-decoration: none; }
     .wrap { width: min(1080px, 92%); margin: 0 auto; }
     .ticker-bar {
       border-bottom: 1px solid var(--border);
@@ -67,14 +71,24 @@
     .chg.down { color: var(--down); }
     .chg.flat { color: var(--muted); }
     .ticker-note { margin: 10px 0 0; color: var(--muted); font-size: 13px; }
+    .site-head {
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(7,11,26,.94); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
     header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; gap: 16px; flex-wrap: wrap;
+      padding: 12px 0; gap: 16px;
     }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
-    .brand img { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; }
-    nav { display: flex; gap: 14px 16px; flex-wrap: wrap; font-size: 14px; }
-    nav a { color: var(--muted); }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--text); flex: 0 0 auto; }
+    .brand:hover { text-decoration: none; }
+    .brand img { width: 40px; height: 40px; border-radius: 12px; object-fit: cover; }
+    nav {
+      display: flex; gap: 14px; font-size: 14px; overflow-x: auto;
+      flex-wrap: nowrap; max-width: 100%; padding-bottom: 2px;
+    }
+    nav a { color: var(--muted); white-space: nowrap; font-weight: 700; }
+    nav a.nav-cta { color: white; background: linear-gradient(90deg, var(--violet), var(--purple)); padding: 8px 12px; border-radius: 999px; }
     .hero {
       display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 36px;
       align-items: center; padding: 28px 0 12px;
@@ -120,6 +134,7 @@
       margin: 8px 0 0;
     }
     section { padding: 42px 0; }
+    section[id] { scroll-margin-top: 84px; }
     h2 { font-size: 1.6rem; margin: 0 0 8px; }
     .sub { color: var(--muted); margin: 0 0 18px; max-width: 44rem; }
     .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -180,7 +195,10 @@
     }
     .link-slot .slot-name { font-weight: 800; }
     .link-slot .slot-state { color: var(--muted); font-size: 13px; font-weight: 600; }
-    .link-slot.is-disabled { opacity: 0.62; cursor: not-allowed; pointer-events: none; }
+    .link-slot.is-disabled {
+      opacity: 1; cursor: not-allowed; pointer-events: none;
+      border-style: dashed; background: rgba(255,255,255,0.03);
+    }
     .mint-field {
       margin-top: 14px; display: grid; grid-template-columns: 1fr auto; gap: 10px;
       align-items: center; background: var(--card); border: 1px solid var(--border);
@@ -194,8 +212,14 @@
     }
     .mint-field button:disabled { opacity: 0.5; cursor: not-allowed; }
     @media (max-width: 860px) {
-      .hero, .ticker-row, .grid, .grid-2, .facts, .token-links { grid-template-columns: 1fr; }
+      .hero, .grid, .grid-2, .facts, .token-links { grid-template-columns: 1fr; }
       .mint-field { grid-template-columns: 1fr; }
+      .ticker-row {
+        display: flex; overflow-x: auto; gap: 8px;
+        scroll-snap-type: x mandatory; padding-bottom: 4px;
+      }
+      .quote { flex: 0 0 220px; scroll-snap-align: start; }
+      section { padding: 32px 0; }
     }
   </style>
 </head>
@@ -228,23 +252,27 @@
     </div>
   </div>
 
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <img src="logo.png" alt="SEDU logo" />
-        <span>SolEdu <span class="gradient">SEDU</span></span>
-      </div>
-      <nav>
-        <a href="launch.html">Launch App</a>
-        <a href="updates.html">Updates</a>
-        <a href="#links">Token links</a>
-        <a href="#rails">Rails</a>
-        <a href="#institutions">Institutions</a>
-        <a href="#token">Token</a>
-        <a href="#buy">How to buy</a>
-      </nav>
-    </header>
+  <div class="site-head">
+    <div class="wrap">
+      <header>
+        <a class="brand" href="./">
+          <img src="logo.png" alt="SEDU logo" />
+          <span>SolEdu <span class="gradient">SEDU</span></span>
+        </a>
+        <nav aria-label="Primary">
+          <a class="nav-cta" href="launch.html">Launch App</a>
+          <a href="demo.html">Demo</a>
+          <a href="updates.html">Updates</a>
+          <a href="#rails">Rails</a>
+          <a href="#institutions">Institutions</a>
+          <a href="#token">Token</a>
+          <a href="#buy">How to buy</a>
+        </nav>
+      </header>
+    </div>
+  </div>
 
+  <div class="wrap">
     <section class="hero">
       <div>
         <div class="pill">On Solana · Education payments</div>
@@ -253,7 +281,7 @@
         <p class="credit">Built by education operators with multi-site program experience. Fast, low-fee rails. Not investment advice.</p>
         <div class="cta">
           <a class="btn btn-primary" href="launch.html">Launch App</a>
-          <a class="btn btn-ghost" href="#links">Token links</a>
+          <a class="btn btn-ghost" href="demo.html">See the demo</a>
         </div>
       </div>
       <div class="hero-card">
@@ -508,6 +536,7 @@
       </div>
       <div class="share-row">
         <a href="updates.html">Official updates</a>
+        <a href="demo.html">Product demo</a>
         <button type="button" class="share-btn" id="share-launch">Share</button>
         <span class="share-status" id="share-status" role="status"></span>
       </div>
