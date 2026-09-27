@@ -161,6 +161,12 @@
       border: 1px solid rgba(255,180,80,.35); background: rgba(255,180,80,.08);
       color: #ffd9a8; border-radius: 14px; padding: 14px; font-size: 0.95rem;
     }
+    .share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 14px; }
+    .share-btn {
+      border: 0; background: transparent; color: var(--muted); font: inherit;
+      font-size: 13px; font-weight: 700; cursor: pointer; padding: 0; text-decoration: underline;
+    }
+    .share-status { color: var(--muted); font-size: 13px; }
     .note {
       border: 1px solid rgba(20,241,149,.35); background: rgba(20,241,149,.08);
       border-radius: 14px; padding: 14px; font-size: 0.95rem; margin-top: 16px;
@@ -230,6 +236,7 @@
       </div>
       <nav>
         <a href="launch.html">Launch App</a>
+        <a href="updates.html">Updates</a>
         <a href="#links">Token links</a>
         <a href="#rails">Rails</a>
         <a href="#institutions">Institutions</a>
@@ -492,6 +499,20 @@
       </div>
     </section>
 
+    <section id="community">
+      <h2>Community / Follow</h2>
+      <p class="sub">Follow this site for the mint and buy links. We never ask for seed phrases.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="launch.html">Launch App</a>
+        <a class="btn btn-ghost" href="mailto:amitai3386@gmail.com?subject=SEDU%20updates%20-%20add%20me">Get launch updates by email</a>
+      </div>
+      <div class="share-row">
+        <a href="updates.html">Official updates</a>
+        <button type="button" class="share-btn" id="share-launch">Share</button>
+        <span class="share-status" id="share-status" role="status"></span>
+      </div>
+    </section>
+
     <footer>
       <div>© SolEdu (SEDU). Built on Solana. Pre-launch — mint and buy link update at launch.</div>
     </footer>
@@ -669,6 +690,26 @@
       applyMint();
       refresh();
       setInterval(refresh, 45000);
+
+      var shareBtn = document.getElementById("share-launch");
+      var shareStatus = document.getElementById("share-status");
+      var shareUrl = "https://amitailevi.github.io/edupay-landing/launch.html";
+      shareBtn.addEventListener("click", function () {
+        var payload = { title: "SolEdu (SEDU) Launch App", text: "Official SolEdu launch page. Mint and buy links publish here.", url: shareUrl };
+        if (navigator.share) {
+          navigator.share(payload).catch(function () {});
+          return;
+        }
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(shareUrl).then(function () {
+            shareStatus.textContent = "Launch App link copied.";
+          }).catch(function () {
+            shareStatus.textContent = shareUrl;
+          });
+          return;
+        }
+        shareStatus.textContent = shareUrl;
+      });
     })();
   </script>
 </body>
